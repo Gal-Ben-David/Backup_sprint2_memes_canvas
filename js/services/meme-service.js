@@ -5,34 +5,13 @@ var gImgs = [...Array(18)]
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'Add text here',
-            size: 20,
-            color: 'white',
-            diffPos: '',
-            color: 'white',
-            diffPos: ''
-        }
-    ]
+    lines: [createLine()]
 }
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 function setImagesInArray() {
-    gImgs.map((_, i) => {
-        if (i <= 17) {
-            gImgs[i] = ({
-                id: (i + 1),
-                url: `img/${i + 1}.jpg`,
-                keywords: []
-            })
-        }
-    })
-}
-
-function setImagesInArray() {
-    gImgs.map((_, i) => {
+    gImgs.forEach((_, i) => {
         if (i <= 17) {
             gImgs[i] = ({
                 id: (i + 1),
@@ -59,7 +38,7 @@ function getMeme() {
 
 function setLineTxt(text) {
     const lineIdx = gMeme.selectedLineIdx
-    gMeme.lines[lineIdx].txt = text
+    gMeme.lines[lineIdx].txt = (!text) ? gMeme.lines[lineIdx].txt : text
 }
 
 function changeTextSize(diff) {
@@ -73,31 +52,48 @@ function changeTextColor(color) {
 }
 
 function addTextLine() {
-    gMeme.lines.push({
+    checkIfTextLineIsEmpty()
+    gMeme.lines.push(createLine())
+
+    setLineDiffPos()
+
+    return gMeme.lines.length - 1
+}
+
+function createLine() {
+    return {
         txt: 'Add text here',
         size: 20,
         color: 'white',
-        diffPos: ''
-    })
-
-    setLineDiffPos()
+        diffPos: '',
+        txtArea: { x: '', y: '', width: '', height: '' }
+    }
 }
 
 function setLineDiffPos() {
-    gMeme.lines.map((line, i) => {
+    gMeme.lines.forEach((line, i) => {
         if (i === 0) line.diffPos = -200
         if (i === 1) line.diffPos = 200
         if (i > 1) line.diffPos = 0
-    }
-    )
+    })
 }
 
-function switchTextLine() {
-    gMeme.selectedLineIdx += 1
+function switchTextLine(idx) {
+    gMeme.selectedLineIdx = (!idx) ? gMeme.selectedLineIdx += 1 : idx
+
     if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
+    console.log('idx', gMeme.selectedLineIdx)
     return gMeme.selectedLineIdx
 }
 
+function setTextArea(x, y, width, height, idx) {
+    Object.assign(gMeme.lines[idx].txtArea, { x, y, width, height })
+}
+
+function checkIfTextLineIsEmpty() {
+    const lineIdxToRemove = gMeme.lines.findIndex(line => line.txt === '')
+    if (lineIdxToRemove !== -1) gMeme.lines.splice(lineIdxToRemove, 1)
+}
 
 
 
