@@ -50,6 +50,7 @@ function setTextInLine(x, y, line, i) {
     gContext.font = `bold ${line.size}px Arial`
     gContext.fillStyle = line.color
 
+
     const text = line.txt.toUpperCase()
 
     const textWidth = gContext.measureText(text).width

@@ -88,6 +88,7 @@ function switchTextLine(idx) {
 
 function setTextArea(x, y, width, height, idx) {
     Object.assign(gMeme.lines[idx].txtArea, { x, y, width, height })
+    console.log(gMeme.lines[idx].txtArea)
 }
 
 function checkIfTextLineIsEmpty() {
