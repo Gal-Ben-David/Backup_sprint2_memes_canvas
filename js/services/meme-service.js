@@ -10,12 +10,26 @@ var gMeme = {
             txt: 'Add text here',
             size: 20,
             color: 'white',
+            diffPos: '',
+            color: 'white',
             diffPos: ''
         }
     ]
 }
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+
+function setImagesInArray() {
+    gImgs.map((_, i) => {
+        if (i <= 17) {
+            gImgs[i] = ({
+                id: (i + 1),
+                url: `img/${i + 1}.jpg`,
+                keywords: []
+            })
+        }
+    })
+}
 
 function setImagesInArray() {
     gImgs.map((_, i) => {

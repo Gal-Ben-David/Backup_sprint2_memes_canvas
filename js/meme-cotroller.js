@@ -30,31 +30,44 @@ function renderMeme() {
     }
 }
 
+
 function createTextLine(line) {
     gContext.lineWidth = 3
+    gContext.strokeStyle = line.color
     gContext.strokeStyle = line.color
 
     const rectWidth = 300
     const rectHeight = 60
     // const x = (gCanvas.width / 2) - (rectWidth / 2)
     // const y = (gCanvas.height / 2) - (rectHeight / 2) + line.diffPos
+    // const x = (gCanvas.width / 2) - (rectWidth / 2)
+    // const y = (gCanvas.height / 2) - (rectHeight / 2) + line.diffPos
 
     //gContext.strokeRect(x, y, rectWidth, rectHeight)
+    //gContext.strokeRect(x, y, rectWidth, rectHeight)
 
+    setTextInLine(gCanvas.width / 2, gCanvas.height / 2, line)
     setTextInLine(gCanvas.width / 2, gCanvas.height / 2, line)
 }
 
 function setTextInLine(x, y, line) {
     gContext.font = `bold ${line.size}px Arial`
     gContext.fillStyle = line.color
+    function setTextInLine(x, y, line) {
+        gContext.font = `bold ${line.size}px Arial`
+        gContext.fillStyle = line.color
 
-    const text = line.txt.toUpperCase()
-    const textWidth = gContext.measureText(text).width
-    const textX = x - (textWidth / 2)
-    const textY = y + line.diffPos
+        const text = line.txt.toUpperCase()
 
-    gContext.fillText(text, textX, textY)
+        const textWidth = gContext.measureText(text).width
+        const textX = x - (textWidth / 2)
+        const textY = y + line.diffPos
+
+
+        gContext.fillText(text, textX, textY)
+    }
 }
+
 
 
 function onGetText(elText) {
@@ -121,3 +134,4 @@ function onDownloadImg(elLink) {
     const imgContent = gCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
+
