@@ -4,5 +4,8 @@
 
 .editor {
     display: flex;
+    justify-content: center;
     gap: 70px;
+
+    margin-block-start: 30px;
 }

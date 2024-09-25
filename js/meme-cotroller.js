@@ -46,7 +46,7 @@ function createTextLine() {
 
 function setTextInLine(x, y, rectWidth, rectHeight) {
     gContext.font = '20px Arial'
-    gContext.fillStyle = 'white'
+    gContext.fillStyle = document.querySelector('.color').value
 
     const text = gText
     const textWidth = gContext.measureText(text).width
@@ -64,4 +64,9 @@ function onGetText(elText) {
 function onImgSelect(imgIdx = 1) {
     getImgUrlById(imgIdx)
     renderMeme()
+}
+
+function onDownloadImg(elLink) {
+    const imgContent = gCanvas.toDataURL('image/jpeg')
+    elLink.href = imgContent
 }
