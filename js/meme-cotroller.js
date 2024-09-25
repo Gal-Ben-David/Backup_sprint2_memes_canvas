@@ -13,6 +13,7 @@ function onInit() {
     renderGallery()
     renderMeme()
 
+    // gCanvas.addEventListener('click', handleClick)
 }
 
 function renderMeme() {
@@ -25,13 +26,13 @@ function renderMeme() {
     img.onload = () => {
         gContext.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 
-        meme.lines.forEach(line => createTextLine(line))
+        meme.lines.forEach((line, i) => createTextLine(line, i))
         //createTextLine(meme)
     }
 }
 
 
-function createTextLine(line) {
+function createTextLine(line, i) {
     gContext.lineWidth = 3
     gContext.strokeStyle = line.color
     gContext.strokeStyle = line.color
@@ -40,35 +41,47 @@ function createTextLine(line) {
     const rectHeight = 60
     // const x = (gCanvas.width / 2) - (rectWidth / 2)
     // const y = (gCanvas.height / 2) - (rectHeight / 2) + line.diffPos
-    // const x = (gCanvas.width / 2) - (rectWidth / 2)
-    // const y = (gCanvas.height / 2) - (rectHeight / 2) + line.diffPos
 
     //gContext.strokeRect(x, y, rectWidth, rectHeight)
     //gContext.strokeRect(x, y, rectWidth, rectHeight)
 
-    setTextInLine(gCanvas.width / 2, gCanvas.height / 2, line)
-    setTextInLine(gCanvas.width / 2, gCanvas.height / 2, line)
+    setTextInLine(gCanvas.width / 2, gCanvas.height / 2, line, i)
 }
 
-function setTextInLine(x, y, line) {
+function setTextInLine(x, y, line, i) {
     gContext.font = `bold ${line.size}px Arial`
     gContext.fillStyle = line.color
-    function setTextInLine(x, y, line) {
-        gContext.font = `bold ${line.size}px Arial`
-        gContext.fillStyle = line.color
 
-        const text = line.txt.toUpperCase()
+    const text = line.txt.toUpperCase()
 
-        const textWidth = gContext.measureText(text).width
-        const textX = x - (textWidth / 2)
-        const textY = y + line.diffPos
+    const textWidth = gContext.measureText(text).width
+    const textHeight = line.size
 
+    const textX = x - (textWidth / 2)
+    const textY = y + line.diffPos
 
-        gContext.fillText(text, textX, textY)
-    }
+    gContext.fillText(text, textX, textY)
+
+    // setTextArea(textX, textY, textWidth, textHeight, i)
 }
 
+// function handleClick(ev) {
+//     const meme = getMeme()
+//     const clickX = ev.offsetX
+//     const clickY = ev.offsetY
 
+//     meme.lines.forEach(line => {
+
+//         if (
+//             clickX >= line.txtArea.x &&
+//             clickX <= line.txtArea.x + line.txtArea.width &&
+//             clickY >= line.txtArea.y &&
+//             clickY <= line.txtArea.y + line.txtArea.height
+//         )
+//             console.log('clicked')
+
+//     })
+// }
 
 function onGetText(elText) {
     setLineTxt(elText)

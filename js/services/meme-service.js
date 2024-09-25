@@ -11,8 +11,7 @@ var gMeme = {
             size: 20,
             color: 'white',
             diffPos: '',
-            color: 'white',
-            diffPos: ''
+            txtArea: { x: '', y: '', width: '', height: '' }
         }
     ]
 }
@@ -96,6 +95,11 @@ function switchTextLine() {
     gMeme.selectedLineIdx += 1
     if (gMeme.selectedLineIdx === gMeme.lines.length) gMeme.selectedLineIdx = 0
     return gMeme.selectedLineIdx
+}
+
+function setTextArea(x, y, width, height, idx) {
+    Object.assign(gMeme.lines[idx].txtArea, { x, y, width, height })
+    console.log(gMeme.lines[idx].txtArea)
 }
 
 
