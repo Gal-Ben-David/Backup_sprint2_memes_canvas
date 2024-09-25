@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--crl-primary-1);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 200px;
+}
+
+canvas {
+    border: 2px solid gray;
+    border-radius: 25px;
+}
+
+img {
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 1px 10px rgba(223, 223, 223, 0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}

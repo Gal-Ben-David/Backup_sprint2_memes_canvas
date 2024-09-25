@@ -10,16 +10,27 @@
 
 </head>
 
-<body>
+<body onload="onInit()">
 
-    <section class="editor">
-        <div class="canvas-container">
-            <canvas></canvas>
-        </div>
-    </section>
+    <main>
+        <section class="editor">
+            <div class="canvas-container">
+                <canvas width="546" height="546"></canvas>
+            </div>
+            <div class="tools">
+                <label for="text" class="text"></label>
+                <input type="text" id="text" class="text" name="text" placeholder="Add text here"
+                    oninput="onGetText(this.value)">
+            </div>
+        </section>
 
-    <section class="galler"></section>
+        <section class=" gallery">
+        </section>
+    </main>
 
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-cotroller.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-auto-flow: dense;
+    gap: 0.8em;
+
+    justify-items: center;
+    align-items: center;
+}
