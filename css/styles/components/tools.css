@@ -12,6 +12,7 @@
 
     border: 2px solid gray;
     border-radius: 25px;
+    background-color: var(--clr-tools-bg);
 }
 
 input.text {
@@ -21,7 +22,7 @@ input.text {
 
     margin-block-start: 20px;
 
-    border-radius: 10px;
+    border-radius: 20px;
     border: 1px solid lightgrey;
     background-color: #f9f9f9;
 
