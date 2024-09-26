@@ -9,8 +9,10 @@ function onInit() {
 
     //setLineTxt()
     setLineDiffPos()
+    setStickersInArray()
     setImagesInArray()
     renderGallery()
+    renderStickerIcons()
     renderMeme()
 
     gCanvas.addEventListener('click', handleClick)
@@ -38,12 +40,31 @@ function createTextLine(line, i) {
 }
 
 function setTextInLine(x, y, line, i) {
+
+    if (line.isSticker) {
+        const sticker = new Image()
+        sticker.src = line.stickerUrl // Replace with your sticker image path
+
+        // Draw the sticker on the canvas once the image is loaded
+        sticker.onload = function () {
+            // Specify the position (x, y) and size (width, height) of the sticker
+            const x = 70 + line.diffPosX// X position on the canvas
+            const y = (line.txtArea.y) ? line.txtArea.y : 70  // Y position on the canvas
+            const width = (line.txtArea.width) ? line.txtArea.width : 100 // Width of the sticker
+            const height = (line.txtArea.height) ? line.txtArea.height : 100 // Height of the sticker
+
+            gContext.drawImage(sticker, x, y, width, height)
+            setTextArea(x, y, width, height, i)
+        }
+        return
+    }
+
     const fontFamily = document.querySelector('.font-family').value
     gContext.font = `bold ${line.size}px '${fontFamily}'`
     gContext.fillStyle = line.color
 
     gContext.strokeStyle = 'black'
-    gContext.lineWidth = 2
+    gContext.lineWidth = 3
 
     const text = line.txt.toUpperCase()
 
@@ -60,20 +81,6 @@ function setTextInLine(x, y, line, i) {
     gContext.strokeText(text, textX, textY)
 
     setTextArea(textX, textY, textWidth, textHeight, i)
-
-    // const sticker = new Image();
-    // sticker.src = 'img/smile.png'; // Replace with your sticker image path
-
-    // // Draw the sticker on the canvas once the image is loaded
-    // sticker.onload = function () {
-    //     // Specify the position (x, y) and size (width, height) of the sticker
-    //     const x = 50; // X position on the canvas
-    //     const y = 50; // Y position on the canvas
-    //     const width = 100; // Width of the sticker
-    //     const height = 100; // Height of the sticker
-
-    //     ctx.drawImage(sticker, x, y, width, height);
-    // };
 }
 
 function handleClick(ev) {
@@ -123,14 +130,18 @@ function onChangeTextColor() {
     renderMeme()
 }
 
-function onAddTextLine() {
+function onAddTextLine(isSticker, url) {
     const lastTextLineIdx = addTextLine()
     switchTextLine(lastTextLineIdx)
 
-    const meme = getMeme()
-    const currLineIdx = meme.selectedLineIdx
-    document.querySelector('.text').value = meme.lines[currLineIdx].txt
+    if (!isSticker) {
+        const meme = getMeme()
+        const currLineIdx = meme.selectedLineIdx
+        document.querySelector('.text').value = meme.lines[currLineIdx].txt
 
+    } else {
+        updateIsSticker(url)
+    }
     renderMeme()
 }
 
@@ -202,6 +213,15 @@ function onDeleteLine() {
 
 function onChangeFontFamily() {
     renderMeme()
+}
+
+function renderStickerIcons() {
+    const elStickers = document.querySelector('.stickers')
+    const stickers = getStickers()
+
+    const strHtmls = stickers.map(sticker => `<img src="${sticker.url}" onclick="onAddTextLine('true', '${sticker.url}')"/>`)
+    elStickers.innerHTML = strHtmls.join('')
+
 }
 
 function onDownloadImg(elLink) {

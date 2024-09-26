@@ -1,6 +1,7 @@
 'use strict'
 
 var gImgs = [...Array(18)]
+var gStickers = [...Array(6)]
 
 var gMeme = {
     selectedImgId: 1,
@@ -20,6 +21,21 @@ function setImagesInArray() {
             })
         }
     })
+}
+
+function setStickersInArray() {
+    gStickers.forEach((_, i) => {
+        if (i <= 7) {
+            gStickers[i] = ({
+                id: (i + 1),
+                url: `img/sticker${i + 1}.png`
+            })
+        }
+    })
+}
+
+function getStickers() {
+    return gStickers
 }
 
 function getImages() {
@@ -43,7 +59,12 @@ function setLineTxt(text) {
 
 function changeTextSize(diff) {
     const lineIdx = gMeme.selectedLineIdx
-    gMeme.lines[lineIdx].size += diff
+
+    if (gMeme.lines[lineIdx].isSticker) {
+        gMeme.lines[lineIdx].txtArea.width += diff
+        gMeme.lines[lineIdx].txtArea.height += diff
+    }
+    else gMeme.lines[lineIdx].size += diff
 }
 
 function changeTextColor(color) {
@@ -63,11 +84,13 @@ function addTextLine() {
 function createLine() {
     return {
         txt: 'Add text here',
-        size: 50,
+        size: 40,
         color: 'white',
         diffPos: '',
         diffPosX: '',
-        txtArea: { x: '', y: '', width: '', height: '' }
+        txtArea: { x: '', y: '', width: '', height: '' },
+        isSticker: false,
+        stickerUrl: ''
     }
 }
 
@@ -106,13 +129,13 @@ function alignText(dir) {
 
     switch (dir) {
         case 'right':
-            gMeme.lines[lineIdx].diffPosX = 100
+            gMeme.lines[lineIdx].diffPosX = 50
             break
         case 'center':
             gMeme.lines[lineIdx].diffPosX = 0
             break
         case 'left':
-            gMeme.lines[lineIdx].diffPosX = -100
+            gMeme.lines[lineIdx].diffPosX = -50
             break
     }
 }
@@ -122,12 +145,18 @@ function moveText(dir) {
 
     switch (dir) {
         case 'up':
-            gMeme.lines[lineIdx].diffPos -= 5
+            if (gMeme.lines[lineIdx].isSticker) {
+                gMeme.lines[lineIdx].txtArea.y -= 5
+            } else gMeme.lines[lineIdx].diffPos -= 5
             break
+
         case 'down':
-            gMeme.lines[lineIdx].diffPos += 5
+            if (gMeme.lines[lineIdx].isSticker) {
+                gMeme.lines[lineIdx].txtArea.y += 5
+            } else gMeme.lines[lineIdx].diffPos += 5
             break
     }
+
 }
 
 function deleteLine() {
@@ -137,6 +166,14 @@ function deleteLine() {
     gMeme.selectedLineIdx = (!gMeme.selectedLineIdx) ? 0 : gMeme.selectedLineIdx - 1
 
     console.log('after', gMeme.selectedLineIdx)
+}
+
+function updateIsSticker(url) {
+    const lineIdx = gMeme.selectedLineIdx
+    gMeme.lines[lineIdx].isSticker = true
+    gMeme.lines[lineIdx].stickerUrl = url
+    console.log(url)
+    console.log('hi')
 }
 
 
