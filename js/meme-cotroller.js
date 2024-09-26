@@ -60,6 +60,20 @@ function setTextInLine(x, y, line, i) {
     gContext.strokeText(text, textX, textY)
 
     setTextArea(textX, textY, textWidth, textHeight, i)
+
+    // const sticker = new Image();
+    // sticker.src = 'img/smile.png'; // Replace with your sticker image path
+
+    // // Draw the sticker on the canvas once the image is loaded
+    // sticker.onload = function () {
+    //     // Specify the position (x, y) and size (width, height) of the sticker
+    //     const x = 50; // X position on the canvas
+    //     const y = 50; // Y position on the canvas
+    //     const width = 100; // Width of the sticker
+    //     const height = 100; // Height of the sticker
+
+    //     ctx.drawImage(sticker, x, y, width, height);
+    // };
 }
 
 function handleClick(ev) {
