@@ -10,3 +10,19 @@ function renderGallery() {
     elGallery.innerHTML = strHtmls.join('')
 
 }
+
+function showGallery() {
+    const elGallery = document.querySelector('.gallery')
+    const elGalleryBtn = document.querySelector('.gallery-btn')
+
+    elGallery.style.display = 'grid'
+    elGalleryBtn.classList.add('active')
+}
+
+function hideGallery() {
+    const elGallery = document.querySelector('.gallery')
+    const elGalleryBtn = document.querySelector('.gallery-btn')
+
+    elGallery.style.display = 'none'
+    elGalleryBtn.classList.remove('active')
+}

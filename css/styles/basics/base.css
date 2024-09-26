@@ -3,15 +3,15 @@
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+    margin: 0;
     background-color: var(--crl-primary-1);
 }
 
 header {
     display: flex;
     align-items: center;
-    margin-block-start: 3px;
+    justify-content: space-between;
+    margin: 10px auto;
 
     width: 90vw;
     height: 76px;

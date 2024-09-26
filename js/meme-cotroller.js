@@ -1,21 +1,19 @@
 'use strict'
 
-let gCanvas
-let gContext
+function hideEditor() {
+    const elEditor = document.querySelector('.editor')
+    const elEditorBtn = document.querySelector('.memes-btn')
 
-function onInit() {
-    gCanvas = document.querySelector('canvas')
-    gContext = gCanvas.getContext('2d')
+    elEditor.style.display = 'none'
+    elEditorBtn.classList.remove('active')
+}
 
-    //setLineTxt()
-    setLineDiffPos()
-    setStickersInArray()
-    setImagesInArray()
-    renderGallery()
-    renderStickerIcons()
-    renderMeme()
+function showEditor() {
+    const elEditor = document.querySelector('.editor')
+    const elEditorBtn = document.querySelector('.memes-btn')
 
-    gCanvas.addEventListener('click', handleClick)
+    elEditor.style.display = 'flex'
+    elEditorBtn.classList.add('active')
 }
 
 function renderMeme() {
@@ -24,6 +22,8 @@ function renderMeme() {
     const img = new Image()
     const imgIdx = meme.selectedImgId
     img.src = getImgUrlById(imgIdx)
+
+    onShowEditor()
 
     img.onload = () => {
         gContext.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
@@ -45,9 +45,7 @@ function setTextInLine(x, y, line, i) {
         const sticker = new Image()
         sticker.src = line.stickerUrl // Replace with your sticker image path
 
-        // Draw the sticker on the canvas once the image is loaded
         sticker.onload = function () {
-            // Specify the position (x, y) and size (width, height) of the sticker
             const x = 70 + line.diffPosX// X position on the canvas
             const y = (line.txtArea.y) ? line.txtArea.y : 70  // Y position on the canvas
             const width = (line.txtArea.width) ? line.txtArea.width : 100 // Width of the sticker

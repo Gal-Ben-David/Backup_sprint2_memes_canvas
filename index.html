@@ -15,6 +15,11 @@
 
     <header>
         <img src="img/LOGO.png" />
+        <div class="buttons">
+            <button class="gallery-btn" onclick="onShowGallery()">Gallery</button>
+            <button class="memes-btn" onclick="onShowEditor()">Meme</button>
+            <button class="saved-btn">Saved</button>
+        </div>
     </header>
 
     <main>
@@ -80,13 +85,14 @@
             </div>
         </section>
 
-        <section class=" gallery">
+        <section class="gallery">
         </section>
     </main>
 
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-cotroller.js"></script>
+    <script src="js/main-controller.js"></script>
 </body>
 
 </html>

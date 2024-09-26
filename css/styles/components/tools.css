@@ -138,6 +138,7 @@ button:hover {
     width: 447px;
     height: 80px;
     padding: 10px;
+    margin-block-start: 5px;
 
     border-radius: 50px;
     background-color: rgba(255, 255, 255, 0.372);
@@ -146,6 +147,11 @@ button:hover {
 .stickers img {
     display: block;
     width: 55px;
+    cursor: pointer;
+}
+
+.stickers img:hover {
+    transform: scale(1.1);
 }
 
 .links {
