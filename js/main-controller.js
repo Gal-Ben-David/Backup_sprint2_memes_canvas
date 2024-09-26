@@ -7,7 +7,6 @@ function onInit() {
     gCanvas = document.querySelector('canvas')
     gContext = gCanvas.getContext('2d')
 
-    //setLineTxt()
     setLineDiffPos()
     setStickersInArray()
     setImagesInArray()

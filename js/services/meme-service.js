@@ -160,20 +160,15 @@ function moveText(dir) {
 }
 
 function deleteLine() {
-    console.log('before', gMeme.selectedLineIdx)
     const lineIdx = gMeme.selectedLineIdx
     gMeme.lines.splice(lineIdx, 1)
     gMeme.selectedLineIdx = (!gMeme.selectedLineIdx) ? 0 : gMeme.selectedLineIdx - 1
-
-    console.log('after', gMeme.selectedLineIdx)
 }
 
 function updateIsSticker(url) {
     const lineIdx = gMeme.selectedLineIdx
     gMeme.lines[lineIdx].isSticker = true
     gMeme.lines[lineIdx].stickerUrl = url
-    console.log(url)
-    console.log('hi')
 }
 
 

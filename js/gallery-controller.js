@@ -8,7 +8,6 @@ function renderGallery() {
     const strHtmls = images.map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})"/>`)
 
     elGallery.innerHTML = strHtmls.join('')
-
 }
 
 function showGallery() {

@@ -43,13 +43,13 @@ function setTextInLine(x, y, line, i) {
 
     if (line.isSticker) {
         const sticker = new Image()
-        sticker.src = line.stickerUrl // Replace with your sticker image path
+        sticker.src = line.stickerUrl
 
         sticker.onload = function () {
-            const x = 70 + line.diffPosX// X position on the canvas
-            const y = (line.txtArea.y) ? line.txtArea.y : 70  // Y position on the canvas
-            const width = (line.txtArea.width) ? line.txtArea.width : 100 // Width of the sticker
-            const height = (line.txtArea.height) ? line.txtArea.height : 100 // Height of the sticker
+            const x = 70 + line.diffPosX
+            const y = (line.txtArea.y) ? line.txtArea.y : 70
+            const width = (line.txtArea.width) ? line.txtArea.width : 100
+            const height = (line.txtArea.height) ? line.txtArea.height : 100
 
             gContext.drawImage(sticker, x, y, width, height)
             setTextArea(x, y, width, height, i)
@@ -72,9 +72,6 @@ function setTextInLine(x, y, line, i) {
     const textX = x - (textWidth / 2) + (+line.diffPosX)
     const textY = y + line.diffPos
 
-    // console.log('Clicked Position: ', 'x:', x, 'y:', y)
-    // console.log('Calculated Text Position: ', 'textX:', textX, 'textY:', textY)
-
     gContext.fillText(text, textX, textY)
     gContext.strokeText(text, textX, textY)
 
@@ -85,9 +82,6 @@ function handleClick(ev) {
     const meme = getMeme()
     const clickX = ev.offsetX
     const clickY = ev.offsetY + 20
-
-    console.log('evX', clickX, 'evY', clickY)
-    //console.log('evClientX', ev.clientX, 'evClientY', ev.clientY)
 
     meme.lines.forEach((line, i) => {
 
@@ -219,7 +213,6 @@ function renderStickerIcons() {
 
     const strHtmls = stickers.map(sticker => `<img src="${sticker.url}" onclick="onAddTextLine('true', '${sticker.url}')"/>`)
     elStickers.innerHTML = strHtmls.join('')
-
 }
 
 function onDownloadImg(elLink) {
@@ -232,23 +225,17 @@ function onUploadToFB(url) {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
 }
 
-
 function onUploadImg(ev) {
     ev.preventDefault()
     const canvasData = gCanvas.toDataURL('image/jpeg')
 
-    // After a successful upload, allow the user to share on Facebook
     function onSuccess(uploadedImgUrl) {
-        // console.log('uploadedImgUrl:', uploadedImgUrl)
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
 
         onUploadToFB(encodedUploadedImgUrl)
     }
     uploadImg(canvasData, onSuccess)
 }
-
-
-// on submit call to this function
 
 async function uploadImg(imgData, onSuccess) {
     const CLOUD_NAME = 'webify'
@@ -262,7 +249,6 @@ async function uploadImg(imgData, onSuccess) {
             body: formData
         })
         const data = await res.json()
-        // console.log('Cloudinary response:', data)
         onSuccess(data.secure_url)
 
     } catch (err) {
