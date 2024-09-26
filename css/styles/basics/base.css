@@ -32,12 +32,6 @@ canvas {
     border-radius: 25px;
 }
 
-
-
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
 a {
     color: white;
     text-decoration: none;

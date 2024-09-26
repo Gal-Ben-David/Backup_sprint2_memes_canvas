@@ -1,7 +1,7 @@
 'use strict'
 
 function renderGallery() {
-    const elGallery = document.querySelector('.gallery')
+    const elGallery = document.querySelector('.img-container')
 
     const images = getImages()
 
@@ -15,7 +15,7 @@ function showGallery() {
     const elGallery = document.querySelector('.gallery')
     const elGalleryBtn = document.querySelector('.gallery-btn')
 
-    elGallery.style.display = 'grid'
+    elGallery.style.display = 'block'
     elGalleryBtn.classList.add('active')
 }
 

@@ -3,21 +3,36 @@
 }
 
 .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
-    grid-auto-flow: dense;
-    gap: 0.8em;
+    display: flex;
+    justify-content: center;
 
-    justify-items: center;
-    align-items: center;
+    width: 80vw;
+    padding: 20px;
+    margin: auto;
+    margin-block-start: 20px;
+
+    border-radius: 20px;
+
+    background-color: var(--clr-tools-bg);
+}
+
+.img-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap: 1em;
+    justify-content: center;
 }
 
 .gallery img {
-
-    width: 300px;
+    width: 100%;
     border-radius: 20px;
+
     box-shadow: 0 1px 10px rgba(223, 223, 223, 0.4);
     cursor: pointer;
     transition: transform 0.3s ease;
 
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
 }
