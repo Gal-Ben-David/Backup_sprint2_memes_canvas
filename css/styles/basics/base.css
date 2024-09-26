@@ -3,6 +3,7 @@
 }
 
 body {
+    text-align: center;
     margin: 0;
     background-color: var(--crl-primary-1);
 }
@@ -13,10 +14,8 @@ header {
     justify-content: space-between;
     margin: 10px auto;
 
-
     height: 76px;
     align-self: center;
-
 
     background: linear-gradient(90deg, #109cb1 0%, #3dc981 80%);
 }

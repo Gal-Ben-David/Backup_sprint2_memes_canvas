@@ -20,6 +20,7 @@ function onInit() {
 function onShowGallery() {
     showGallery()
     hideEditor()
+    toggleMenu()
 }
 
 function onShowEditor() {

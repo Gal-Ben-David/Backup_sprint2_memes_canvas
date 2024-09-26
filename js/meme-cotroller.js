@@ -150,11 +150,18 @@ function onSwitchTextLine() {
 function drawFrame() {
     const meme = getMeme()
     const currLineIdx = meme.selectedLineIdx
+    var y
+    const padding = 15
 
-    const rectWidth = meme.lines[currLineIdx].txtArea.width + 30
-    const rectHeight = meme.lines[currLineIdx].txtArea.height + 30
-    const x = meme.lines[currLineIdx].txtArea.x - 15
-    const y = meme.lines[currLineIdx].txtArea.y - meme.lines[currLineIdx].txtArea.height - 5
+    const rectWidth = meme.lines[currLineIdx].txtArea.width + padding * 2
+    const rectHeight = meme.lines[currLineIdx].txtArea.height + padding * 2
+    const x = meme.lines[currLineIdx].txtArea.x - padding
+
+    if (meme.lines[currLineIdx].isSticker) {
+        y = meme.lines[currLineIdx].txtArea.y - padding
+    } else {
+        y = meme.lines[currLineIdx].txtArea.y - meme.lines[currLineIdx].txtArea.height - padding / 2
+    }
     const radius = 30
 
     const img = new Image()
