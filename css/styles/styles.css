@@ -1,5 +1,6 @@
 /* SETUP */
 @import url('./setup/vars.css');
+@import url('./setup/fonts.css');
 
 
 /* BASICS */
@@ -10,3 +11,4 @@
 @import url('./components/tools.css');
 @import url('./components/editor.css');
 @import url('./components/gallery.css');
+@import url('./components/header.css');

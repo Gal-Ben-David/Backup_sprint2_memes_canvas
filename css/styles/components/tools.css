@@ -6,13 +6,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    row-gap: 20px;
 
     width: 528px;
     height: 549px;
 
-    border: 2px solid gray;
     border-radius: 25px;
     background-color: var(--clr-tools-bg);
+
+    font-family: lato;
 }
 
 input.text {
@@ -24,8 +26,162 @@ input.text {
 
     border-radius: 20px;
     border: 1px solid lightgrey;
-    background-color: #f9f9f9;
+    background-color: #d8d7d7;
 
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: lato;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+
+    box-shadow:
+        0px -3px 1px #fbffff,
+        0px 3px 1px #adb6c2;
     transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.tools button {
+    width: 57px;
+    height: 53px;
+    border-radius: 15px;
+    border: none;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.tools-row-1 {
+    display: flex;
+    gap: 20px;
+    margin-block-end: 10px;
+}
+
+.tools-row-1>* {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.switch-line-btn {
+    background: linear-gradient(145deg, #3BAECC, #3b8dc6);
+    box-shadow: 0px 3px 1px #0F7A85;
+}
+
+.add-line-btn {
+    background: linear-gradient(145deg, #40DF58, #48b74e);
+    box-shadow: 0px 3px 1px#076936;
+}
+
+.delete-line-btn {
+    background: linear-gradient(145deg, #E33D36, #d65353);
+    box-shadow: 0px 3px 1px#8C0606;
+}
+
+button:hover {
+    transform: scale(1.02);
+}
+
+
+.tools-row-2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    width: 447px;
+    height: 153px;
+    background-color: #19A59F;
+    border-radius: 15px;
+
+    color: black;
+}
+
+.tools-row-2>* {
+    background-color: #FFFFFF;
+    box-shadow: 0px 5px 1px #43434378;
+}
+
+.txt-color {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.font-family {
+    grid-column: 4/ span 2;
+    width: 150px;
+    height: 53px;
+    padding: 10px;
+
+    border-radius: 15px;
+    border: none;
+
+    font-size: 20px;
+    font-family: lato;
+}
+
+
+.stickers {
+    width: 447px;
+    height: 80px;
+    padding: 10px;
+
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.372);
+}
+
+.stickers img {
+    width: 60px;
+}
+
+.links {
+    display: flex;
+    gap: 20px;
+    margin-block-start: 10px;
+}
+
+.tools a {
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    align-content: center;
+
+    border-radius: 20px;
+    background-color: #8F44BB;
+
+    font-size: 21px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+    box-shadow:
+        0px -5px 1px #ad62d8,
+        0px 5px 1px #632687;
+
+    cursor: pointer;
+}
+
+.tools a:hover {
+    transform: scale(1.02);
+}
+
+#btn-facebook {
+    display: b;
+    width: 200px;
+    height: 50px;
+
+    color: white;
+    font-family: lato;
+    font-size: 21px;
+
+    border-radius: 20px;
+
+    background-color: #1E7CD3;
+    box-shadow:
+        0px -5px 1px#43A1E1,
+        0px 5px 1px #195994;
+}
+
+.btn-facebook i {
+    margin-inline-end: 10px;
 }

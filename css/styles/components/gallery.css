@@ -11,3 +11,13 @@
     justify-items: center;
     align-items: center;
 }
+
+.gallery img {
+
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 1px 10px rgba(223, 223, 223, 0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+}

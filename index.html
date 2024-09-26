@@ -12,6 +12,10 @@
 
 <body onload="onInit()">
 
+    <header>
+        <img src="img/LOGO.png" />
+    </header>
+
     <main>
         <section class="editor">
             <div class="canvas-container">
@@ -22,13 +26,57 @@
                 <input type="text" id="text" class="text" name="text" placeholder="Add text here"
                     oninput="onGetText(this.value)">
 
-                <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download Image
-                </a>
-                <input type="color" class="txt-color" name="color" value="#FFFFFF" onchange="onChangeTextColor()">
-                <button class="increasing-txt-btn" onclick="onChangeTextSize(2)">Increase</button>
-                <button class="decreasing-txt-btn" onclick="onChangeTextSize(-2)">Decrease</button>
-                <button class="add-line-btn" onclick="onAddTextLine()">Add Line</button>
-                <button class="switch-line-btn" onclick="onSwitchTextLine()">Switch Line</button>
+                <section class="tools-row-1">
+                    <button class="switch-line-btn" onclick="onSwitchTextLine()"><i
+                            class="fa-solid fa-shuffle"></i></button>
+                    <button class="add-line-btn" onclick="onAddTextLine()"><i class="fa-solid fa-plus"></i></button>
+                    <button class="delete-line-btn" onclick="onDeleteLine()"><i
+                            class="fa-solid fa-trash-can"></i></button>
+                </section>
+
+                <section class="tools-row-2">
+                    <button class="increasing-txt-btn" onclick="onChangeTextSize(2)"><i
+                            class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+                    <button class="decreasing-txt-btn" onclick="onChangeTextSize(-2)"><i
+                            class="fa-solid fa-down-left-and-up-right-to-center"></i></button>
+
+                    <button class="align-left-btn" onclick="onAlignText('left')"><i
+                            class="fa-solid fa-align-left"></i></i></button>
+                    <button class="align-center-btn" onclick="onAlignText('center')"><i
+                            class="fa-solid fa-align-center"></i></button>
+                    <button class="align-right-btn" onclick="onAlignText('right')"><i
+                            class="fa-solid fa-align-right"></i></button>
+
+                    <button class="moving-up-text" onclick="onMoveText('up')"><i
+                            class="fa-solid fa-arrow-up"></i></button>
+                    <button class="moving-down-text" onclick="onMoveText('down')"><i
+                            class="fa-solid fa-arrow-down"></i></button>
+
+                    <button class="palette-btn" onclick="document.getElementById('colorPicker').click()"><i
+                            class="fa-solid fa-palette"></i></button>
+                    <input type="color" id="colorPicker" class="txt-color" name="color" value="#FFFFFF"
+                        onchange="onChangeTextColor()">
+
+
+                    <select class="font-family select" onchange="onChangeFontFamily()">
+                        <option value="largeImpact">Impact</option>
+                        <option value="Arial">Arial</option>
+                    </select>
+
+                </section>
+
+                <section class="stickers">
+                    <img src="img/smile.png" />
+                </section>
+
+                <section class="links">
+                    <button id="btn-facebook" class="btn-facebook" target="_blank" onclick="onUploadImg(event)"><i
+                            class="fa-solid fa-share"></i>Share</button>
+                    <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download
+                    </a>
+                </section>
+
+
             </div>
         </section>
 

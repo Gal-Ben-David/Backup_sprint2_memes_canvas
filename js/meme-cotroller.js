@@ -33,58 +33,52 @@ function renderMeme() {
 function createTextLine(line, i) {
     gContext.lineWidth = 3
     gContext.strokeStyle = line.color
-    gContext.strokeStyle = line.color
-
-    // const rectWidth = 300
-    // const rectHeight = 60
-    // const x = (gCanvas.width / 2) - (rectWidth / 2)
-    // const y = (gCanvas.height / 2) - (rectHeight / 2) + line.diffPos
-
-    //gContext.strokeRect(x, y, rectWidth, rectHeight)
-    //gContext.strokeRect(x, y, rectWidth, rectHeight)
 
     setTextInLine(gCanvas.width / 2, gCanvas.height / 2, line, i)
 }
 
 function setTextInLine(x, y, line, i) {
-    gContext.font = `bold ${line.size}px Arial`
+    const fontFamily = document.querySelector('.font-family').value
+    gContext.font = `bold ${line.size}px '${fontFamily}'`
     gContext.fillStyle = line.color
 
+    gContext.strokeStyle = 'black'
+    gContext.lineWidth = 2
 
     const text = line.txt.toUpperCase()
 
     const textWidth = gContext.measureText(text).width
     const textHeight = line.size
 
-    const textX = x - (textWidth / 2)
+    const textX = x - (textWidth / 2) + (+line.diffPosX)
     const textY = y + line.diffPos
 
-    // console.log('Clicked Position: ', 'x:', x, 'y:', y);
-    // console.log('Calculated Text Position: ', 'textX:', textX, 'textY:', textY);
+    // console.log('Clicked Position: ', 'x:', x, 'y:', y)
+    // console.log('Calculated Text Position: ', 'textX:', textX, 'textY:', textY)
 
     gContext.fillText(text, textX, textY)
+    gContext.strokeText(text, textX, textY)
 
     setTextArea(textX, textY, textWidth, textHeight, i)
-
-    console.log
 }
 
 function handleClick(ev) {
     const meme = getMeme()
     const clickX = ev.offsetX
-    const clickY = ev.offsetY + 10
+    const clickY = ev.offsetY + 20
 
     console.log('evX', clickX, 'evY', clickY)
-
-    // const currLineTextArea = meme.lines[meme.selectedLineIdx]
+    //console.log('evClientX', ev.clientX, 'evClientY', ev.clientY)
 
     meme.lines.forEach((line, i) => {
 
+        console.log(+line.txtArea.x, line.txtArea.width, line.txtArea.y - 20, line.txtArea.y + line.txtArea.height)
+
         if (
-            clickX >= line.txtArea.x &&
-            clickX <= line.txtArea.x + line.txtArea.width &&
-            clickY >= line.txtArea.y &&
-            clickY <= line.txtArea.y + line.txtArea.height + 10
+            clickX >= Math.round(+line.txtArea.x) &&
+            clickX <= Math.round(line.txtArea.x + line.txtArea.width) &&
+            clickY >= line.txtArea.y - 20 &&
+            clickY <= line.txtArea.y + line.txtArea.height
         ) {
             switchTextLine(i)
             document.querySelector('.text').value = meme.lines[i].txt
@@ -124,7 +118,6 @@ function onAddTextLine() {
     document.querySelector('.text').value = meme.lines[currLineIdx].txt
 
     renderMeme()
-    drawFrame()
 }
 
 function onSwitchTextLine() {
@@ -141,10 +134,11 @@ function drawFrame() {
     const meme = getMeme()
     const currLineIdx = meme.selectedLineIdx
 
-    const rectWidth = 300
-    const rectHeight = 60
-    const x = (gCanvas.width / 2) - (rectWidth / 2)
-    const y = (gCanvas.height / 2) - (rectHeight / 2) + meme.lines[currLineIdx].diffPos
+    const rectWidth = meme.lines[currLineIdx].txtArea.width + 30
+    const rectHeight = meme.lines[currLineIdx].txtArea.height + 30
+    const x = meme.lines[currLineIdx].txtArea.x - 15
+    const y = meme.lines[currLineIdx].txtArea.y - meme.lines[currLineIdx].txtArea.height - 5
+    const radius = 30
 
     const img = new Image()
     const imgIdx = meme.selectedImgId
@@ -153,16 +147,94 @@ function drawFrame() {
     img.onload = () => {
         gContext.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 
-        meme.lines.forEach((line, i) => createTextLine(line, i))
+        drawRoundedRect(gContext, x, y, rectWidth, rectHeight, radius)
 
-        gContext.strokeStyle = 'white'
-        gContext.lineWidth = 3
-        gContext.strokeRect(x, y, rectWidth, rectHeight)
+        meme.lines.forEach((line, i) => createTextLine(line, i))
     }
+}
+
+function drawRoundedRect(gContext, x, y, width, height, radius) {
+    gContext.fillStyle = '#f5f5f593'
+
+    gContext.beginPath()
+    gContext.moveTo(x + radius, y)
+    gContext.lineTo(x + width - radius, y)
+    gContext.quadraticCurveTo(x + width, y, x + width, y + radius)
+    gContext.lineTo(x + width, y + height - radius)
+    gContext.quadraticCurveTo(x + width, y + height, x + width - radius, y + height)
+    gContext.lineTo(x + radius, y + height)
+    gContext.quadraticCurveTo(x, y + height, x, y + height - radius)
+    gContext.lineTo(x, y + radius)
+    gContext.quadraticCurveTo(x, y, x + radius, y)
+    gContext.closePath()
+
+    gContext.fill()
+}
+
+function onAlignText(dir) {
+    alignText(dir)
+    renderMeme()
+}
+
+function onMoveText(dir) {
+    moveText(dir)
+    renderMeme()
+}
+
+function onDeleteLine() {
+    deleteLine()
+    renderMeme()
+}
+
+function onChangeFontFamily() {
+    renderMeme()
 }
 
 function onDownloadImg(elLink) {
     const imgContent = gCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+}
+
+function onUploadToFB(url) {
+    console.log('url:', url)
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&t=${url}`)
+}
+
+
+function onUploadImg(ev) {
+    ev.preventDefault()
+    const canvasData = gCanvas.toDataURL('image/jpeg')
+
+    // After a successful upload, allow the user to share on Facebook
+    function onSuccess(uploadedImgUrl) {
+        // console.log('uploadedImgUrl:', uploadedImgUrl)
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+
+        onUploadToFB(encodedUploadedImgUrl)
+    }
+    uploadImg(canvasData, onSuccess)
+}
+
+
+// on submit call to this function
+
+async function uploadImg(imgData, onSuccess) {
+    const CLOUD_NAME = 'webify'
+    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+    const formData = new FormData()
+    formData.append('file', imgData)
+    formData.append('upload_preset', 'webify')
+    try {
+        const res = await fetch(UPLOAD_URL, {
+            method: 'POST',
+            body: formData
+        })
+        const data = await res.json()
+        // console.log('Cloudinary response:', data)
+        onSuccess(data.secure_url)
+
+    } catch (err) {
+        console.log(err)
+    }
 }
 
