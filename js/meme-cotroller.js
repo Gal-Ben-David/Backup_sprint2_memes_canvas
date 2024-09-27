@@ -1,4 +1,5 @@
 'use strict'
+let gUserImg = null
 
 let gLastPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -28,8 +29,11 @@ function renderMeme() {
     const meme = getMeme()
 
     const img = new Image()
-    const imgIdx = meme.selectedImgId
-    img.src = getImgUrlById(imgIdx)
+
+    if (!gUserImg) {
+        const imgIdx = meme.selectedImgId
+        img.src = getImgUrlById(imgIdx)
+    } else img.src = gUserImg
 
     onShowEditor()
 
@@ -116,6 +120,7 @@ function onGetText(elText) {
 
 function onImgSelect(imgIdx = 1) {
     getImgUrlById(imgIdx)
+    gUserImg = null
     renderMeme()
 }
 
@@ -173,8 +178,11 @@ function drawFrame() {
     const radius = 30
 
     const img = new Image()
-    const imgIdx = meme.selectedImgId
-    img.src = getImgUrlById(imgIdx)
+
+    if (!gUserImg) {
+        const imgIdx = meme.selectedImgId
+        img.src = getImgUrlById(imgIdx)
+    } else img.src = gUserImg
 
     img.onload = () => {
         gContext.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
@@ -323,22 +331,32 @@ function onUploadImg(ev) {
     uploadImg(canvasData, onSuccess)
 }
 
-async function uploadImg(imgData, onSuccess) {
-    const CLOUD_NAME = 'webify'
-    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
-    const formData = new FormData()
-    formData.append('file', imgData)
-    formData.append('upload_preset', 'webify')
-    try {
-        const res = await fetch(UPLOAD_URL, {
-            method: 'POST',
-            body: formData
-        })
-        const data = await res.json()
-        onSuccess(data.secure_url)
-
-    } catch (err) {
-        console.log(err)
-    }
+function onImgInput(ev) {
+    changeSelectedImgIdx()
+    loadImageFromInput(ev, renderImg)
 }
+
+function loadImageFromInput(ev, onImageReady) {
+
+    const reader = new FileReader()
+
+    reader.onload = (event) => {
+        const img = new Image()
+        img.src = event.target.result
+
+        img.onload = () => {
+            onImageReady(img)
+        }
+    }
+
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+function renderImg(img) {
+    //gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    gUserImg = img.src
+    renderMeme()
+}
+
+
 
