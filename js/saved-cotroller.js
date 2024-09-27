@@ -8,7 +8,7 @@ function showSavedMemes() {
 
     elSaved.style.display = 'block'
     elSavedBtn.classList.add('active')
-    renderSavedMemes()
+    renderSavedMemesToSaved()
 }
 
 function hideSavedMemes() {
@@ -47,13 +47,13 @@ function renderSavedMemesToSaved() {
 
     const elSavedMemes = document.querySelector('.saved-memes-container')
 
-    const strHtmls = gSavedMemes.map((meme, i) => `<img src="${meme.imgDataUrl}" onclick="onSetSavedMemeToCanvas(${i})"/>`)
+    const strHtmls = gSavedMemes.map((meme, i) => `<img src="${meme.imgDataUrl}" onclick="onSetSavedMeme(${i})"/>`)
 
     elSavedMemes.innerHTML = strHtmls.join('')
 }
 
 function onSetSavedMeme(idx) {
-    setSavedMemeToCanvas()
+    setSavedMemeToCanvas(idx)
     renderSavedMemesToCanvas()
 }
 

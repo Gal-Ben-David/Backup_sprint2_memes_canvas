@@ -146,9 +146,9 @@ function updateIsSticker(url) {
     gMeme.lines[lineIdx].stickerUrl = url
 }
 
-function setSavedMemeToCanvas() {
+function setSavedMemeToCanvas(idx) {
     const savedMemes = loadFromStorage('memes') || []
-    console.log(savedMemes)
+
     gMeme.selectedImgId = savedMemes[idx].selectedImgId
     gMeme.selectedLineIdx = savedMemes[idx].selectedLineIdx
     gMeme.lines = savedMemes[idx].lines
