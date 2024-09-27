@@ -63,10 +63,9 @@ function addTextLine() {
 function createLine() {
     return {
         txt: 'Add text here',
-        size: 40,
+        size: 30,
         color: 'white',
         diffPos: '',
-        diffPosX: '',
         txtArea: { x: '', y: '', width: '', height: '' },
         isSticker: false,
         stickerUrl: ''
@@ -105,16 +104,18 @@ function checkIfTextLineIsEmpty() {
 
 function alignText(dir) {
     const lineIdx = gMeme.selectedLineIdx
+    const padding = 10
 
     switch (dir) {
         case 'right':
-            gMeme.lines[lineIdx].diffPosX = 50
+            gMeme.lines[lineIdx].txtArea.x = 546 - gMeme.lines[lineIdx].txtArea.width - padding
             break
         case 'center':
-            gMeme.lines[lineIdx].diffPosX = 0
+            gMeme.lines[lineIdx].txtArea.x = (546 - gMeme.lines[lineIdx].txtArea.width) / 2
             break
         case 'left':
-            gMeme.lines[lineIdx].diffPosX = -50
+            gMeme.lines[lineIdx].txtArea.x = padding
+            console.log(gMeme.lines[lineIdx].txtArea.x)
             break
     }
 }

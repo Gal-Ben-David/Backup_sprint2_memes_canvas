@@ -46,19 +46,19 @@ function setTextInLine(x, y, line, i) {
         sticker.src = line.stickerUrl
 
         sticker.onload = function () {
-            const x = 70 + line.diffPosX
-            const y = (line.txtArea.y) ? line.txtArea.y : 70
+            const xPos = (line.txtArea.x) ? line.txtArea.x : 70
+            const yPos = (line.txtArea.y) ? line.txtArea.y : 90
             const width = (line.txtArea.width) ? line.txtArea.width : 100
             const height = (line.txtArea.height) ? line.txtArea.height : 100
 
-            gContext.drawImage(sticker, x, y, width, height)
-            setTextArea(x, y, width, height, i)
+            gContext.drawImage(sticker, xPos, yPos, width, height)
+            setTextArea(xPos, yPos, width, height, i)
         }
         return
     }
 
     const fontFamily = document.querySelector('.font-family').value
-    gContext.font = `bold ${line.size}px '${fontFamily}'`
+    gContext.font = `800 ${line.size}px '${fontFamily}'`
     gContext.fillStyle = line.color
 
     gContext.strokeStyle = 'black'
@@ -69,7 +69,7 @@ function setTextInLine(x, y, line, i) {
     const textWidth = gContext.measureText(text).width
     const textHeight = line.size
 
-    const textX = x - (textWidth / 2) + (+line.diffPosX)
+    const textX = (line.txtArea.x) ? line.txtArea.x : x - (textWidth / 2)
     const textY = y + line.diffPos
 
     gContext.fillText(text, textX, textY)
