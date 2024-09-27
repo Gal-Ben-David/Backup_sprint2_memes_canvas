@@ -1,6 +1,6 @@
 'use strict'
 
-var gImgs = [...Array(18)]
+
 var gStickers = [...Array(6)]
 
 var gMeme = {
@@ -11,17 +11,6 @@ var gMeme = {
 
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
-function setImagesInArray() {
-    gImgs.forEach((_, i) => {
-        if (i <= 17) {
-            gImgs[i] = ({
-                id: (i + 1),
-                url: `img/${i + 1}.jpg`,
-                keywords: []
-            })
-        }
-    })
-}
 
 function setStickersInArray() {
     gStickers.forEach((_, i) => {
@@ -36,16 +25,6 @@ function setStickersInArray() {
 
 function getStickers() {
     return gStickers
-}
-
-function getImages() {
-    return gImgs
-}
-
-function getImgUrlById(idx) {
-    gMeme.selectedImgId = idx
-    const selectedImg = gImgs.find(img => img.id === idx)
-    return selectedImg.url
 }
 
 function getMeme() {
