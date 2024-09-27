@@ -1,5 +1,8 @@
 'use strict'
 
+let gLastPos
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
 function hideEditor() {
     const elEditor = document.querySelector('.editor')
     const elEditorBtn = document.querySelector('.memes-btn')
@@ -53,11 +56,11 @@ function setTextInLine(x, y, line, i) {
         sticker.onload = function () {
             const xPos = (line.txtArea.x) ? line.txtArea.x : 70
             const yPos = (line.txtArea.y) ? line.txtArea.y : 90
-            const width = (line.txtArea.width) ? line.txtArea.width : 100
-            const height = (line.txtArea.height) ? line.txtArea.height : 100
+            // const width = (line.txtArea.width) ? line.txtArea.width : line.size
+            // const height = (line.txtArea.height) ? line.txtArea.height : line.size
 
-            gContext.drawImage(sticker, xPos, yPos, width, height)
-            setTextArea(xPos, yPos, width, height, i)
+            gContext.drawImage(sticker, xPos, yPos, line.size, line.size)
+            setTextArea(xPos, yPos, line.size, line.size, i)
         }
         return
     }
@@ -230,6 +233,77 @@ function renderStickerIcons() {
 function onDownloadImg(elLink) {
     const imgContent = gCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
+}
+
+function onDown(ev) {
+    const pos = getEvPos(ev)
+
+    if (!isLineClicked) return
+
+    setLineDrag(true)
+
+    gLastPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const meme = getMeme()
+    const currLineIdx = meme.selectedLineIdx
+    const { isDrag } = meme.lines[currLineIdx]
+    if (!isDrag) return
+
+    const pos = getEvPos(ev)
+    const dx = pos.x - gLastPos.x
+    const dy = pos.y - gLastPos.y
+
+    moveLine(dx, dy)
+
+    gLastPos = pos
+    renderMeme()
+}
+
+function onUp() {
+    setLineDrag(false)
+    document.body.style.cursor = 'grab'
+}
+
+function addListeners() {
+    gCanvas.addEventListener('click', handleClick)
+    addMouseListeners()
+    addTouchListeners()
+}
+
+function addMouseListeners() {
+    gCanvas.addEventListener('mousedown', onDown)
+    gCanvas.addEventListener('mousemove', onMove)
+    gCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gCanvas.addEventListener('touchstart', onDown)
+    gCanvas.addEventListener('touchmove', onMove)
+    gCanvas.addEventListener('touchend', onUp)
+}
+
+function getEvPos(ev) {
+
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVS.includes(ev.type)) {
+        //* Prevent triggering the mouse screen dragging event
+        ev.preventDefault()
+        //* Gets the first touch point
+        ev = ev.changedTouches[0]
+        //* Calc the right pos according to the touch screen
+        pos = {
+            x: ev.clientX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.clientY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
 }
 
 function onUploadToFB(url) {

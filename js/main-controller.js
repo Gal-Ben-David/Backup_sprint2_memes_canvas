@@ -14,7 +14,7 @@ function onInit() {
     renderStickerIcons()
     renderMeme()
 
-    gCanvas.addEventListener('click', handleClick)
+    addListeners()
 }
 
 function onShowGallery() {

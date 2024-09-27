@@ -38,12 +38,7 @@ function setLineTxt(text) {
 
 function changeTextSize(diff) {
     const lineIdx = gMeme.selectedLineIdx
-
-    if (gMeme.lines[lineIdx].isSticker) {
-        gMeme.lines[lineIdx].txtArea.width += diff
-        gMeme.lines[lineIdx].txtArea.height += diff
-    }
-    else gMeme.lines[lineIdx].size += diff
+    gMeme.lines[lineIdx].size += diff
 }
 
 function changeTextColor(color) {
@@ -67,7 +62,8 @@ function createLine() {
         color: 'white',
         txtArea: { x: '', y: '', width: '', height: '' },
         isSticker: false,
-        stickerUrl: ''
+        stickerUrl: '',
+        isDrag: false
     }
 }
 
@@ -143,6 +139,7 @@ function deleteLine() {
 function updateIsSticker(url) {
     const lineIdx = gMeme.selectedLineIdx
     gMeme.lines[lineIdx].isSticker = true
+    gMeme.lines[lineIdx].size = 100
     gMeme.lines[lineIdx].stickerUrl = url
 }
 
@@ -154,6 +151,27 @@ function setSavedMemeToCanvas(idx) {
     gMeme.lines = savedMemes[idx].lines
 }
 
+function isLineClicked(clickedPos) {
+    const lineIdx = gMeme.selectedLineIdx
+    const posX = gMeme.lines[lineIdx].txtArea.x
+    const posY = gMeme.lines[lineIdx].txtArea.y
+
+    //* Calc the distance between two dots
+    const distance = Math.sqrt((posX - clickedPos.x) ** 2 + (posY - clickedPos.y) ** 2)
+    //* If its smaller then the radius of the circle, we know we clicked inside the circle
+    return distance <= gMeme.lines[lineIdx].size
+}
+
+function setLineDrag(isDrag) {
+    const lineIdx = gMeme.selectedLineIdx
+    gMeme.lines[lineIdx].isDrag = isDrag
+}
+
+function moveLine(dx, dy) {
+    const lineIdx = gMeme.selectedLineIdx
+    gMeme.lines[lineIdx].txtArea.x += dx
+    gMeme.lines[lineIdx].txtArea.y += dy
+}
 
 
 
