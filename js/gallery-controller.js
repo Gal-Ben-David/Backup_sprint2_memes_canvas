@@ -7,6 +7,13 @@ function renderGallery() {
 
     const strHtmls = images.map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})"/>`)
 
+    strHtmls.unshift(
+        `<label for="file-upload" class="custom-file-label"><div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
+        <span>Add yours </span></label>
+        <input type="file" id="file-upload" class="file-input btn" name="file-upload"
+            onchange="onImgInput(event)">`
+    )
+
     elGallery.innerHTML = strHtmls.join('')
 }
 
