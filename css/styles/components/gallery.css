@@ -23,7 +23,7 @@
     justify-content: center;
 }
 
-.gallery img {
+.img-container img {
     width: 100%;
     border-radius: 20px;
 
@@ -72,4 +72,35 @@ input.file-input {
     cursor: pointer;
 
     transition: transform 0.3s ease;
+}
+
+.filter {
+    position: relative;
+
+}
+
+input.list {
+    position: relative;
+
+    height: 61px;
+    padding: 20px;
+    margin-block-end: 40px;
+
+    border-radius: 30px;
+    border: none;
+
+    color: white;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    background-color: #22252C;
+}
+
+.search-img {
+    position: absolute;
+    display: block;
+    width: 20px;
+
+
+    background-color: #22252C;
 }

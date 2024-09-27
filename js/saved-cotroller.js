@@ -43,13 +43,18 @@ function saveMeme() {
 }
 
 function renderSavedMemesToSaved() {
-    const gSavedMemes = loadFromStorage('memes') || []
+    const savedMemes = loadFromStorage('memes') || []
+    const elSavedMemesContainer = document.querySelector('.saved-memes-container')
+    const elSavedMemesSection = document.querySelector('.saved-memes')
 
-    const elSavedMemes = document.querySelector('.saved-memes-container')
+    if (savedMemes.length === 0) {
+        elSavedMemesSection.innerHTML = '<p>No saved memes yet...</p> <p> Start creating your own memes! 😎</p>'
+        return
+    }
 
-    const strHtmls = gSavedMemes.map((meme, i) => `<img src="${meme.imgDataUrl}" onclick="onSetSavedMeme(${i})"/>`)
+    const strHtmls = savedMemes.map((meme, i) => `<img src="${meme.imgDataUrl}" onclick="onSetSavedMeme(${i})"/>`)
 
-    elSavedMemes.innerHTML = strHtmls.join('')
+    elSavedMemesContainer.innerHTML = strHtmls.join('')
 }
 
 function onSetSavedMeme(idx) {

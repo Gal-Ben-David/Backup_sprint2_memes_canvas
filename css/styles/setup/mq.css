@@ -34,6 +34,19 @@
     header .buttons.open {
         transform: translateX(0);
     }
+
+    .filter {
+        width: 300px;
+    }
+
+    input.list {
+        width: 100%;
+    }
+
+    .search-img {
+        top: 20px;
+        left: 260px;
+    }
 }
 
 @media (min-width: 800px) {
@@ -49,4 +62,18 @@
     .hamburger {
         display: none;
     }
+
+    .filter {
+        width: 544px;
+    }
+
+    input.list {
+        width: 100%;
+    }
+
+    .search-img {
+        top: 20px;
+        left: 500px;
+    }
+
 }
