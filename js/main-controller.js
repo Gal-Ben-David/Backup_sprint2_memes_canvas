@@ -20,11 +20,20 @@ function onInit() {
 function onShowGallery() {
     showGallery()
     hideEditor()
+    hideSavedMemes()
     toggleMenu()
 }
 
 function onShowEditor() {
     showEditor()
+    hideGallery()
+    hideSavedMemes()
+    toggleMenu()
+}
+
+function onShowSavedMemes() {
+    showSavedMemes()
+    hideEditor()
     hideGallery()
 }
 
@@ -32,3 +41,4 @@ function toggleMenu() {
     const buttons = document.querySelector('.buttons');
     buttons.classList.toggle('open');
 }
+

@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+.saved-memes {
+    display: flex;
+    justify-content: center;
+
+    width: 80vw;
+    padding: 20px;
+    margin: auto;
+    margin-block-start: 20px;
+
+    border-radius: 20px;
+
+    background-color: var(--clr-tools-bg);
+}
+
+.saved-memes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    gap: 1em;
+    justify-content: center;
+}
+
+.saved-memes img {
+    width: 100%;
+    border-radius: 20px;
+
+    box-shadow: 0 1px 10px rgba(223, 223, 223, 0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}

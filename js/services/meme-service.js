@@ -1,7 +1,7 @@
 'use strict'
 
-
 var gStickers = [...Array(6)]
+var gSavedMemes = []
 
 var gMeme = {
     selectedImgId: 1,
@@ -146,6 +146,9 @@ function updateIsSticker(url) {
     gMeme.lines[lineIdx].stickerUrl = url
 }
 
+function _saveMeme() {
+    saveToStorage('memes', gMeme)
+}
 
 
 

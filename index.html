@@ -18,7 +18,7 @@
         <div class="buttons">
             <button class="gallery-btn" onclick="onShowGallery()">Gallery</button>
             <button class="memes-btn" onclick="onShowEditor()">Meme</button>
-            <button class="saved-btn">Saved</button>
+            <button class="saved-btn" onclick="onShowSavedMemes()">Saved</button>
         </div>
     </header>
 
@@ -76,10 +76,12 @@
                 <section class="links">
                     <button id="btn-facebook" class="btn-facebook" target="_blank" onclick="onUploadImg(event)"><i
                             class="fa-solid fa-share"></i>Share</button>
+
                     <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download
                     </a>
-                </section>
 
+                    <button class="saved-btn"><i class="fa-solid fa-bookmark" onclick=""></i></button>
+                </section>
 
             </div>
         </section>
@@ -87,9 +89,15 @@
         <section class="gallery">
             <section class="img-container"></section>
         </section>
+
+        <section class="saved-memes">
+            <section class="saved-memes-container"></section>
+        </section>
     </main>
 
+    <script src="js/services/storage-service.js"></script>
     <script src="js/services/gallery-service.js"></script>
+    <script src="js/saved-cotroller.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-cotroller.js"></script>
