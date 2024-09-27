@@ -65,7 +65,6 @@ function createLine() {
         txt: 'Add text here',
         size: 30,
         color: 'white',
-        diffPos: '',
         txtArea: { x: '', y: '', width: '', height: '' },
         isSticker: false,
         stickerUrl: ''
@@ -74,9 +73,10 @@ function createLine() {
 
 function setLineDiffPos() {
     gMeme.lines.forEach((line, i) => {
-        if (i === 0 && !line.diffPos) line.diffPos = -200
-        if (i === 1 && !line.diffPos) line.diffPos = 200
-        if (i > 1 && !line.diffPos) line.diffPos = 0
+        const posY = line.txtArea.y
+        if (i === 0 && !posY) line.txtArea.y = 73
+        if (i === 1 && !posY) line.txtArea.y = 473
+        if (i > 1 && !posY) line.txtArea.y = 0
     })
 }
 
@@ -125,18 +125,13 @@ function moveText(dir) {
 
     switch (dir) {
         case 'up':
-            if (gMeme.lines[lineIdx].isSticker) {
-                gMeme.lines[lineIdx].txtArea.y -= 5
-            } else gMeme.lines[lineIdx].diffPos -= 5
+            gMeme.lines[lineIdx].txtArea.y -= 5
             break
 
         case 'down':
-            if (gMeme.lines[lineIdx].isSticker) {
-                gMeme.lines[lineIdx].txtArea.y += 5
-            } else gMeme.lines[lineIdx].diffPos += 5
+            gMeme.lines[lineIdx].txtArea.y += 5
             break
     }
-
 }
 
 function deleteLine() {

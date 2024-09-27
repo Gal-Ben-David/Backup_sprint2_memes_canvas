@@ -70,7 +70,7 @@ function setTextInLine(x, y, line, i) {
     const textHeight = line.size
 
     const textX = (line.txtArea.x) ? line.txtArea.x : x - (textWidth / 2)
-    const textY = y + line.diffPos
+    const textY = line.txtArea.y
 
     gContext.fillText(text, textX, textY)
     gContext.strokeText(text, textX, textY)
