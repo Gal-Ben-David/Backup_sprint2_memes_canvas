@@ -17,8 +17,8 @@
         <div class="hamburger" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
         <div class="buttons">
             <button class="gallery-btn" onclick="onShowGallery()">Gallery</button>
-            <button class="memes-btn" onclick="onShowEditor()">Meme</button>
-            <button class="saved-btn" onclick="onShowSavedMemes()">Saved</button>
+            <button class="memes-btn" onclick="onShowEditor()">Editor</button>
+            <button class="saved-btn" onclick="onShowSavedMemes()">Memes</button>
         </div>
     </header>
 
@@ -80,7 +80,8 @@
                     <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download
                     </a>
 
-                    <button class="saved-btn"><i class="fa-solid fa-bookmark" onclick=""></i></button>
+                    <button class="tools-saved-btn" onclick="onSaveMeme(this)"><i
+                            class="fa-regular fa-bookmark"></i></button>
                 </section>
 
             </div>
@@ -97,8 +98,8 @@
 
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/gallery-service.js"></script>
-    <script src="js/saved-cotroller.js"></script>
     <script src="js/services/meme-service.js"></script>
+    <script src="js/saved-cotroller.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-cotroller.js"></script>
     <script src="js/main-controller.js"></script>

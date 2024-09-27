@@ -76,7 +76,7 @@ function setLineDiffPos() {
         const posY = line.txtArea.y
         if (i === 0 && !posY) line.txtArea.y = 73
         if (i === 1 && !posY) line.txtArea.y = 473
-        if (i > 1 && !posY) line.txtArea.y = 0
+        if (i > 1 && !posY) line.txtArea.y = 273
     })
 }
 
@@ -146,9 +146,14 @@ function updateIsSticker(url) {
     gMeme.lines[lineIdx].stickerUrl = url
 }
 
-function _saveMeme() {
-    saveToStorage('memes', gMeme)
+function setSavedMemeToCanvas() {
+    const savedMemes = loadFromStorage('memes') || []
+    console.log(savedMemes)
+    gMeme.selectedImgId = savedMemes[idx].selectedImgId
+    gMeme.selectedLineIdx = savedMemes[idx].selectedLineIdx
+    gMeme.lines = savedMemes[idx].lines
 }
+
 
 
 

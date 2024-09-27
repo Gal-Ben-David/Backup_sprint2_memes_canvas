@@ -3,6 +3,7 @@
 function saveToStorage(key, value) {
     const strValue = JSON.stringify(value)
     localStorage.setItem(key, strValue)
+    console.log('hi')
 }
 
 function loadFromStorage(key) {

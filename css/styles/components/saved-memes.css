@@ -18,7 +18,7 @@
 
 .saved-memes-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 500px);
+    grid-template-columns: repeat(auto-fit, 200px);
     gap: 1em;
     justify-content: center;
 }

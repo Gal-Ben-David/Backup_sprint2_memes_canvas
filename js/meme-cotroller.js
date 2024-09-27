@@ -17,6 +17,11 @@ function showEditor() {
 }
 
 function renderMeme() {
+    if (gClickedSavedBtn) {
+        document.querySelector('.tools-saved-btn').innerHTML = '<i class="fa-regular fa-bookmark"></i>'
+        gClickedSavedBtn = false
+    }
+
     const meme = getMeme()
 
     const img = new Image()
