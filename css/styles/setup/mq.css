@@ -11,10 +11,7 @@
     .editor {
         display: flex;
         flex-direction: column;
-    }
-
-    canvas {
-        width: 350px;
+        align-items: center;
     }
 
     header .buttons {

@@ -1,7 +1,6 @@
 'use strict'
-let gUserImg = null
+let gUserImgSrc = null
 let isMouseDown = false
-
 
 
 let gLastPos
@@ -34,10 +33,10 @@ function renderMeme() {
 
     const img = new Image()
 
-    if (!gUserImg) {
+    if (!gUserImgSrc) {
         const imgIdx = meme.selectedImgId
         img.src = getImgUrlById(imgIdx)
-    } else img.src = gUserImg
+    } else img.src = gUserImgSrc
 
     onShowEditor()
 
@@ -118,7 +117,7 @@ function onGetText(elText) {
 
 function onImgSelect(imgIdx = 1) {
     getImgUrlById(imgIdx)
-    gUserImg = null
+    gUserImgSrc = null
     renderMeme()
 }
 
@@ -175,10 +174,10 @@ function drawFrame() {
 
     const img = new Image()
 
-    if (!gUserImg) {
+    if (!gUserImgSrc) {
         const imgIdx = meme.selectedImgId
         img.src = getImgUrlById(imgIdx)
-    } else img.src = gUserImg
+    } else img.src = gUserImgSrc
 
     img.onload = () => {
         gContext.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
@@ -243,18 +242,22 @@ function onDownloadImg(elLink) {
 }
 
 function isLineClicked(clickedPos, currLine) {
+    const scaleX = gCanvas.width / 546
+    const scaleY = gCanvas.height / 546
+    console.log(gCanvas.width, gCanvas.height)
+
     const posX = currLine.txtArea.x
     const posY = currLine.txtArea.y
 
     if (currLine.isSticker) {
         const distance = Math.sqrt((posX - clickedPos.x) ** 2 + (posY - clickedPos.y) ** 2)
-        return distance <= currLine.size
+        return distance <= currLine.size * scaleX
 
     } else if (
         clickedPos.x >= Math.round(+posX) &&
-        clickedPos.x <= Math.round(posX + currLine.txtArea.width) &&
-        clickedPos.y >= posY - 20 &&
-        clickedPos.y <= posY + currLine.txtArea.height
+        clickedPos.x <= Math.round(posX + currLine.txtArea.width * scaleX) &&
+        clickedPos.y >= posY - 20 * scaleY &&
+        clickedPos.y <= posY + currLine.txtArea.height * scaleY
     )
         return true
 }
@@ -299,9 +302,12 @@ function onUp() {
 }
 
 function addListeners() {
-    //   gCanvas.addEventListener('click', handleClick)
+    window.addEventListener('resize', adjustCanvasSize)
+    window.addEventListener('load', adjustCanvasSize)
+    //gCanvas.addEventListener('click', handleClick)
     addMouseListeners()
     addTouchListeners()
+
 }
 
 function addMouseListeners() {
@@ -378,7 +384,7 @@ function loadImageFromInput(ev, onImageReady) {
 function renderImg(img) {
     resizeCanvas(img)
 
-    gUserImg = img.src
+    gUserImgSrc = img.src
     renderMeme()
 }
 
@@ -386,6 +392,24 @@ function resizeCanvas(img) {
     gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
     gCanvasDimensions.height = gCanvas.height
     gCanvasDimensions.width = gCanvas.width
+}
+
+function adjustCanvasSize() {
+    const container = document.querySelector('.canvas-container')
+
+    if (window.innerWidth <= 800) {
+        gCanvas.width = 350
+        gCanvas.height = 350
+        alignAllLinesToCenter()
+        changeAllLinesFontSize()
+    } else {
+        gCanvas.width = 546
+        gCanvas.height = 546
+    }
+
+    container.style.width = `${gCanvas.width}px`
+
+    renderMeme()
 }
 
 

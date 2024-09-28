@@ -190,10 +190,10 @@ function alignText(dir) {
 
     switch (dir) {
         case 'right':
-            gMeme.lines[lineIdx].txtArea.x = 546 - gMeme.lines[lineIdx].txtArea.width - padding
+            gMeme.lines[lineIdx].txtArea.x = gCanvas.width - gMeme.lines[lineIdx].txtArea.width - padding
             break
         case 'center':
-            gMeme.lines[lineIdx].txtArea.x = (546 - gMeme.lines[lineIdx].txtArea.width) / 2
+            gMeme.lines[lineIdx].txtArea.x = (gCanvas.width - gMeme.lines[lineIdx].txtArea.width) / 2
             break
         case 'left':
             gMeme.lines[lineIdx].txtArea.x = padding
@@ -243,6 +243,19 @@ function moveLine(dx, dy) {
 
 function changeSelectedImgIdx() {
     gMeme.selectedImgId = -1
+}
+
+function alignAllLinesToCenter() {
+    gMeme.lines.forEach(line => {
+        line.txtArea.x = (gCanvas.width - line.txtArea.width) / 2
+        line.txtArea.y = (gCanvas.height - line.txtArea.height) / 2
+    })
+}
+
+function changeAllLinesFontSize() {
+    gMeme.lines.forEach(line => {
+        line.size = (line.isSticker) ? 60 : 30
+    })
 }
 
 
