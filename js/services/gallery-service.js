@@ -6,7 +6,7 @@ var gImgCategories = [
     ['baby', 'funny'], ['funny', 'men'], ['baby', 'funny'], ['funny'], ['awkward', 'men'], ['men'], ['men'],
     ['men'], ['men', 'funny'], ['men', 'funny'], ['men'], ['funny']]
 
-var gKeywordSearchCountMap = { 'funny': 12, 'men': 16, 'baby': 2 }
+var gKeywordSearchCountMap = { 'men': 28, 'baby': 20, 'funny': 34, 'awkward': 15, 'animal': 25 }
 
 function setImagesInArray() {
     gImgs.forEach((_, i) => {

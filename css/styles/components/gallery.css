@@ -76,6 +76,10 @@ input.file-input {
     transition: transform 0.3s ease;
 }
 
+.filter-elements {
+    justify-content: center;
+}
+
 .filter {
     position: relative;
     height: 61px;
@@ -112,6 +116,9 @@ input.list {
 }
 
 .keywords {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 48px;
     padding: 20px;
     margin-block-end: 40px;
@@ -119,4 +126,13 @@ input.list {
 
     background-color: #87898D;
     border-radius: 30px;
+}
+
+.keywords button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    cursor: pointer;
 }

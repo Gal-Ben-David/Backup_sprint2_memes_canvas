@@ -54,9 +54,11 @@ function renderKeywords() {
     const keywords = [...Object.keys(keywordSearchCountMap)]
     const keywordsSizes = [...Object.values(keywordSearchCountMap)]
 
-    const strHtmls = keywords.map((keyword, i) =>
-        `<button value="${keyword}" onclick="onClickedCategory(this)" 
-    style="font-size:${keywordsSizes[i]}px">${keyword}</button>`)
+    const strHtmls = keywords.map((keyword, i) => {
+        console.log((keywordsSizes[i]), keywordsSizes[i] > 6)
+        return `<button value="${keyword}" onclick="onClickedCategory(this)" 
+    style="font-size:${keywordsSizes[i]}px">${keyword}</button>`
+    })
 
     elKewwordsContainer.innerHTML = strHtmls.join('')
 }
