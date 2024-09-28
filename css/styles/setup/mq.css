@@ -74,7 +74,7 @@
     }
 
     .filter {
-        width: 544px;
+        width: 500px;
     }
 
     input.list {
@@ -86,10 +86,6 @@
         top: 50%;
         right: 20px;
         transform: translateY(-50%);
-    }
-
-    .keywords {
-        width: 450px;
     }
 
     .filter-elements {

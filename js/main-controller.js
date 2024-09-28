@@ -2,6 +2,7 @@
 
 let gCanvas
 let gContext
+let gIsFlexibleMode = false
 var gCanvasDimensions = { width: '', height: '' }
 
 function onInit() {
@@ -56,5 +57,11 @@ function onShowSavedMemes() {
 function toggleMenu() {
     const buttons = document.querySelector('.buttons');
     buttons.classList.toggle('open');
+}
+
+function onGetFlexibleMeme() {
+    gIsFlexibleMode = true
+    console.log('hi')
+    renderMeme()
 }
 

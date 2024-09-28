@@ -90,23 +90,29 @@
 
         <section class="gallery">
             <section class="filter-elements">
-                <div class="filter">
-                    <input class="list" list="browsers" placeholder="Search" oninput="onFilterBy(this.value)">
-                    <img class="search-img" src="img/magnify-glass.png">
+                <div class="filter-container">
+                    <div class="filter">
+                        <input class="list" list="browsers" placeholder="Search" oninput="onFilterBy(this.value)">
+                        <img class="search-img" src="img/magnify-glass.png">
 
-                    <datalist id="browsers">
-                        <option value="Funny">
-                        <option value="Animal">
-                        <option value="Baby">
-                        <option value="Men">
-                        <option value="Awkward">
-                    </datalist>
+                        <datalist id="browsers">
+                            <option value="Funny">
+                            <option value="Animal">
+                            <option value="Baby">
+                            <option value="Men">
+                            <option value="Awkward">
+                        </datalist>
+                    </div>
+
+                    <div class="keywords-container">
+                        <div class="keywords"></div>
+                        <button class="clear-filter-btn" onclick="onClearFilterBy()"><i
+                                class="fa-solid fa-circle-xmark"></i></button>
+                    </div>
                 </div>
 
-                <div class="keywords-container">
-                    <div class="keywords"></div>
-                    <button class="clear-filter-btn" onclick="onClearFilterBy()"><i
-                            class="fa-solid fa-circle-xmark"></i></button>
+                <div class="flexible-btn-container">
+                    <button class="flexible-btn" onclick="onGetFlexibleMeme()">I'm flexible</button>
                 </div>
             </section>
 

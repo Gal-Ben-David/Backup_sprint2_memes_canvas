@@ -8,6 +8,38 @@ var gMeme = {
     lines: [createLine()]
 }
 
+var gDemoMemes = [{
+    selectedImgId: 23,
+    selectedLineIdx: 0,
+    lines: [{
+        txt: 'Me after one productive hour:',
+        size: 23,
+        color: 'white',
+        txtArea: { x: 30, y: 100, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    }, {
+        txt: 'I deserve a snack, a break,',
+        size: 25,
+        color: 'white',
+        txtArea: { x: 30, y: 650, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    },
+    {
+        txt: 'and maybe a vacation',
+        size: 30,
+        color: 'white',
+        txtArea: { x: 30, y: 700, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    }
+    ]
+}]
+
 function setStickersInArray() {
     gStickers.forEach((_, i) => {
         if (i <= 7) {
@@ -17,6 +49,12 @@ function setStickersInArray() {
             })
         }
     })
+}
+
+function getFlexibleMeme() {
+    gMeme = { ...gDemoMemes[0] }
+    console.log(gMeme)
+    return gDemoMemes[0]
 }
 
 function getStickers() {

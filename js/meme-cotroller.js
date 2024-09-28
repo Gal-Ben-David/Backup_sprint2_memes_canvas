@@ -29,7 +29,8 @@ function renderMeme() {
         gClickedSavedBtn = false
     }
 
-    const meme = getMeme()
+    const meme = (gIsFlexibleMode) ? getFlexibleMeme() : getMeme()
+    gIsFlexibleMode = false
 
     const img = new Image()
 
@@ -107,7 +108,7 @@ function handleClick(ev) {
             isLineClicked(pos, line)
         ) {
             switchTextLine(i)
-            if (!line.isSticker) document.querySelector('.text').value = meme.lines[i].txt
+            document.querySelector('.text').value = meme.lines[i].txt
             drawFrame()
             console.log('clicked')
         }
@@ -140,11 +141,9 @@ function onAddTextLine(isSticker, url) {
     const lastTextLineIdx = addTextLine(isSticker, url)
     switchTextLine(lastTextLineIdx)
 
-    if (!isSticker) {
-        const meme = getMeme()
-        const currLineIdx = meme.selectedLineIdx
-        document.querySelector('.text').value = meme.lines[currLineIdx].txt
-    }
+    const meme = getMeme()
+    const currLineIdx = meme.selectedLineIdx
+    document.querySelector('.text').value = (!isSticker) ? meme.lines[currLineIdx].txt : ''
 
     renderMeme()
 }
@@ -271,7 +270,7 @@ function onDown(ev) {
     meme.lines.forEach((line, i) => {
         if (isLineClicked(pos, line)) {
             switchTextLine(i)
-            if (!line.isSticker) document.querySelector('.text').value = meme.lines[i].txt
+            document.querySelector('.text').value = meme.lines[i].txt
             drawFrame()
             setLineDrag(true)
             console.log('clicked')
