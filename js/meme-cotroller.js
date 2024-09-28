@@ -251,7 +251,7 @@ function isLineClicked(clickedPos, currLine) {
 
     if (currLine.isSticker) {
         const distance = Math.sqrt((posX - clickedPos.x) ** 2 + (posY - clickedPos.y) ** 2)
-        return distance <= currLine.size * scaleX
+        return distance <= currLine.size
 
     } else if (
         clickedPos.x >= Math.round(+posX) &&
