@@ -1,9 +1,11 @@
 'use strict'
 
+const gQueryOptions = { filterBy: '' }
+
 function renderGallery() {
     const elGallery = document.querySelector('.img-container')
 
-    const images = getImages()
+    const images = getImages(gQueryOptions.filterBy)
 
     const strHtmls = images.map(img => `<img src="${img.url}" onclick="onImgSelect(${img.id})"/>`)
 
@@ -31,4 +33,9 @@ function hideGallery() {
 
     elGallery.style.display = 'none'
     elGalleryBtn.classList.remove('active')
+}
+
+function onFilterBy(elCategory) {
+    gQueryOptions.filterBy = elCategory.toLowerCase()
+    renderGallery()
 }
