@@ -56,7 +56,7 @@ function renderKeywords() {
 
     const strHtmls = keywords.map((keyword, i) => {
         return `<button value="${keyword}" onclick="onClickedCategory(this)" 
-    style="font-size:${keywordsSizes[i]}px">${keyword}</button>`
+    style="font-size:${keywordsSizes[i] / 16}rem">${keyword}</button>`
     })
 
     elKewwordsContainer.innerHTML = strHtmls.join('')

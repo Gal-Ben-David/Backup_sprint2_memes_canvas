@@ -1,4 +1,9 @@
 @media (max-width:800px) {
+    html {
+        font-size: 10px;
+        /* Base font-size for tablets or smaller */
+    }
+
     header {
         width: 100vw;
         margin: 0;
@@ -25,10 +30,11 @@
 
     .hamburger {
         display: block;
+        margin-inline-end: 30px;
+
         font-size: 30px;
         cursor: pointer;
         color: white;
-        margin-inline-end: 30px;
     }
 
     header .buttons.open {
@@ -57,40 +63,80 @@
         align-items: center;
         gap: 5px;
     }
+
+    .filter-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        width: 100%;
+    }
+
+    .gallery {
+        gap: 30px;
+    }
+
+    .keywords-container {
+        height: 60px;
+    }
+
+    .keywords {
+        font-size: 1rem;
+    }
+
 }
 
-@media (min-width: 800px) {
-    header {
-        width: 90vw;
-        border-radius: 50px;
-    }
-
-    .editor {
-        flex-direction: row;
-    }
-
+@media (min-width: 801px) {
     .hamburger {
         display: none;
     }
 
-    .filter {
-        width: 500px;
-    }
-
-    input.list {
-        width: 100%;
-        margin-block-end: 40px;
-    }
-
-    .search-img {
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-    }
-
     .filter-elements {
         display: flex;
-        gap: 13px;
+        gap: 10px;
     }
 
+    .filter-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .clear-filter-btn {
+        margin-block-start: -25px;
+    }
+
+    .filter {
+        width: 100%;
+    }
+
+
+}
+
+@media (min-width: 1200px) {
+    .filter-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filter {
+        width: 400px;
+        height: 100%;
+
+        margin-block-start: -32px;
+    }
+}
+
+@media (min-width: 1380px) {
+    .filter-elements {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .filter-container {
+        width: 100%;
+    }
 }

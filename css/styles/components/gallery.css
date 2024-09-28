@@ -83,12 +83,12 @@ input.file-input {
 
 .filter-container {
     display: flex;
-    width: 100%;
 }
 
 .filter {
     position: relative;
     height: 61px;
+
 }
 
 input.list {
@@ -145,7 +145,6 @@ input.list {
 }
 
 .clear-filter-btn {
-    margin-block-start: -25px;
 
     border: none;
     background-color: transparent;

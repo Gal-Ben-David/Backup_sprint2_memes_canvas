@@ -52,6 +52,9 @@ function onShowSavedMemes() {
     setImagesInArray()
     renderGallery()
     renderStickerIcons()
+
+    const buttons = document.querySelector('.buttons');
+    buttons.classList.remove('open');
 }
 
 function toggleMenu() {
