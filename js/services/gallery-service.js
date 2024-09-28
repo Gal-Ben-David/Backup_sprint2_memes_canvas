@@ -1,17 +1,18 @@
 'use strict'
 
-var gImgs = [...Array(20)]
+var gImgs = [...Array(24)]
 var gImgCategories = [
     ['funny', 'men'], ['animal'], ['baby', 'animal'], ['animal'], ['baby'], ['funny', 'men'],
     ['baby', 'funny'], ['funny', 'men'], ['baby', 'funny'], ['funny'], ['awkward', 'men'], ['men'], ['men'],
     ['men'], ['men', 'funny'], ['men', 'funny'], ['men'], ['funny'], ['men', 'funny'], ['baby', 'funny'],
+    ['animal'], ['animal'], ['animal'], ['animal']
 ]
 
 var gKeywordSearchCountMap = { 'men': 28, 'baby': 20, 'funny': 34, 'awkward': 15, 'animal': 25 }
 
 function setImagesInArray() {
     gImgs.forEach((_, i) => {
-        if (i <= 19) {
+        if (i <= 23) {
             gImgs[i] = ({
                 id: (i + 1),
                 url: `img/${i + 1}.jpg`,
