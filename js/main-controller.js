@@ -18,9 +18,9 @@ function onInit() {
     renderStickerIcons()
     renderMeme()
 
-    addListeners()
+    onShowGallery()
 
-    console.log(gImgs)
+    addListeners()
 }
 
 function onShowGallery() {

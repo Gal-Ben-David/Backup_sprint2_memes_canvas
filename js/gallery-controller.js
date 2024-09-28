@@ -55,10 +55,18 @@ function renderKeywords() {
     const keywordsSizes = [...Object.values(keywordSearchCountMap)]
 
     const strHtmls = keywords.map((keyword, i) => {
-        console.log((keywordsSizes[i]), keywordsSizes[i] > 6)
         return `<button value="${keyword}" onclick="onClickedCategory(this)" 
     style="font-size:${keywordsSizes[i]}px">${keyword}</button>`
     })
 
     elKewwordsContainer.innerHTML = strHtmls.join('')
+}
+
+function onClearFilterBy() {
+    gQueryOptions.filterBy = ''
+
+    const elFilterInput = document.querySelector('.list')
+    elFilterInput.value = ''
+
+    renderGallery()
 }

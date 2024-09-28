@@ -8,6 +8,7 @@
     justify-content: center;
 
     width: 80vw;
+    max-width: 1600px;
     padding: 20px;
     margin: auto;
     margin-block-start: 20px;
@@ -106,13 +107,16 @@ input.list {
 .search-img {
     position: absolute;
     top: 50%;
-    /* Center vertically */
     right: 20px;
-    /* Position the icon 20px from the right side of .filter */
     transform: translateY(-50%);
     width: 20px;
 
     background-color: #22252C;
+}
+
+.keywords-container {
+    display: flex;
+    gap: 10px;
 }
 
 .keywords {
@@ -135,4 +139,13 @@ input.list {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     cursor: pointer;
+}
+
+.clear-filter-btn {
+    margin-block-start: -25px;
+
+    border: none;
+    background-color: transparent;
+    color: #29B481;
+    font-size: 25px;
 }
