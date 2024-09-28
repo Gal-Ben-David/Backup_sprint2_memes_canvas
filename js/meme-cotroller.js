@@ -242,9 +242,9 @@ function onDownloadImg(elLink) {
 }
 
 function isLineClicked(clickedPos, currLine) {
-    const scaleX = gCanvas.width / 546
-    const scaleY = gCanvas.height / 546
-    console.log(gCanvas.width, gCanvas.height)
+    // const scaleX = gCanvas.width / 546
+    // const scaleY = gCanvas.height / 546
+    // console.log(gCanvas.width, gCanvas.height)
 
     const posX = currLine.txtArea.x
     const posY = currLine.txtArea.y
@@ -255,9 +255,9 @@ function isLineClicked(clickedPos, currLine) {
 
     } else if (
         clickedPos.x >= Math.round(+posX) &&
-        clickedPos.x <= Math.round(posX + currLine.txtArea.width * scaleX) &&
-        clickedPos.y >= posY - 20 * scaleY &&
-        clickedPos.y <= posY + currLine.txtArea.height * scaleY
+        clickedPos.x <= Math.round(posX + currLine.txtArea.width) &&
+        clickedPos.y >= posY - 20 &&
+        clickedPos.y <= posY + currLine.txtArea.height
     )
         return true
 }
@@ -302,11 +302,13 @@ function onUp() {
 }
 
 function addListeners() {
-    window.addEventListener('resize', adjustCanvasSize)
-    window.addEventListener('load', adjustCanvasSize)
     //gCanvas.addEventListener('click', handleClick)
     addMouseListeners()
     addTouchListeners()
+    // window.addEventListener('resize', () => {
+    //     resizeCanvas()
+    //     renderMeme()
+    // })
 
 }
 
@@ -388,29 +390,18 @@ function renderImg(img) {
     renderMeme()
 }
 
+function resizeCanvasforMq() {
+    const elContainer = document.querySelector('.canvas-container')
+    gCanvas.width = elContainer.offsetWidth
+    gCanvas.height = elContainer.offsetHeight
+}
+
 function resizeCanvas(img) {
     gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
     gCanvasDimensions.height = gCanvas.height
     gCanvasDimensions.width = gCanvas.width
 }
 
-function adjustCanvasSize() {
-    const container = document.querySelector('.canvas-container')
-
-    if (window.innerWidth <= 800) {
-        gCanvas.width = 350
-        gCanvas.height = 350
-        alignAllLinesToCenter()
-        changeAllLinesFontSize()
-    } else {
-        gCanvas.width = 546
-        gCanvas.height = 546
-    }
-
-    container.style.width = `${gCanvas.width}px`
-
-    renderMeme()
-}
 
 
 
