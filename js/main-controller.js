@@ -30,8 +30,8 @@ function onShowGallery() {
     hideSavedMemes()
     renderKeywords()
 
-    const buttons = document.querySelector('.buttons');
-    buttons.classList.remove('open');
+    const buttons = document.querySelector('.buttons')
+    buttons.classList.remove('open')
 }
 
 function onShowEditor() {
@@ -39,8 +39,8 @@ function onShowEditor() {
     hideGallery()
     hideSavedMemes()
 
-    const buttons = document.querySelector('.buttons');
-    buttons.classList.remove('open');
+    const buttons = document.querySelector('.buttons')
+    buttons.classList.remove('open')
 }
 
 function onShowSavedMemes() {
@@ -53,13 +53,13 @@ function onShowSavedMemes() {
     renderGallery()
     renderStickerIcons()
 
-    const buttons = document.querySelector('.buttons');
-    buttons.classList.remove('open');
+    const buttons = document.querySelector('.buttons')
+    buttons.classList.remove('open')
 }
 
 function toggleMenu() {
-    const buttons = document.querySelector('.buttons');
-    buttons.classList.toggle('open');
+    const buttons = document.querySelector('.buttons')
+    buttons.classList.toggle('open')
 }
 
 function onGetFlexibleMeme() {

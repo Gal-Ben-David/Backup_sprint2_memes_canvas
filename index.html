@@ -27,8 +27,8 @@
             <div class="canvas-container">
                 <canvas width="546" height="546"></canvas>
             </div>
-            <div class="tools">
 
+            <div class="tools">
                 <input type="text" id="text" class="text" name="text" placeholder="Add text here"
                     oninput="onGetText(this.value)">
 
@@ -38,7 +38,6 @@
                     <button class="add-line-btn" onclick="onAddTextLine()"><i class="fa-solid fa-plus"></i></button>
                     <button class="delete-line-btn" onclick="onDeleteLine()"><i
                             class="fa-solid fa-trash-can"></i></button>
-
                 </section>
 
                 <section class="tools-row-2">
@@ -91,6 +90,7 @@
         <section class="gallery">
             <section class="filter-elements">
                 <div class="filter-container">
+
                     <div class="filter">
                         <input class="list" list="browsers" placeholder="Search" oninput="onFilterBy(this.value)">
                         <img class="search-img" src="img/magnify-glass.png">

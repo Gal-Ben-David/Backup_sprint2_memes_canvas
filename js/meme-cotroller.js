@@ -66,8 +66,6 @@ function setTextInLine(x, y, line, i) {
         sticker.onload = function () {
             const xPos = (line.txtArea.x) ? line.txtArea.x : 70
             const yPos = (line.txtArea.y) ? line.txtArea.y : 90
-            // const width = (line.txtArea.width) ? line.txtArea.width : line.size
-            // const height = (line.txtArea.height) ? line.txtArea.height : line.size
 
             gContext.drawImage(sticker, xPos, yPos, line.size, line.size)
             setTextArea(xPos, yPos, line.size, line.size, i)
@@ -101,8 +99,6 @@ function handleClick(ev) {
     const pos = getEvPos(ev)
 
     meme.lines.forEach((line, i) => {
-
-        //console.log(+line.txtArea.x, line.txtArea.width, line.txtArea.y - 20, line.txtArea.y + line.txtArea.height)
 
         if (
             isLineClicked(pos, line)
