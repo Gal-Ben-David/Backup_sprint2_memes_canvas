@@ -119,7 +119,7 @@ input.list {
 .keywords-container {
     display: flex;
     gap: 10px;
-    margin-inline-start: 20px;
+
 }
 
 .keywords {

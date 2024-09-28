@@ -1,7 +1,6 @@
 @media (max-width:800px) {
     html {
         font-size: 10px;
-        /* Base font-size for tablets or smaller */
     }
 
     header {
@@ -12,6 +11,10 @@
     .editor {
         display: flex;
         flex-direction: column;
+    }
+
+    canvas {
+        width: 350px;
     }
 
     header .buttons {
@@ -93,7 +96,8 @@
 
     .filter-elements {
         display: flex;
-        gap: 10px;
+        justify-content: space-between;
+        gap: 20px
     }
 
     .filter-container {
@@ -101,6 +105,7 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        width: 100%;
     }
 
     .clear-filter-btn {
@@ -111,8 +116,9 @@
         width: 100%;
     }
 
-
 }
+
+@media (min-width:800px) {}
 
 @media (min-width: 1200px) {
     .filter-container {
