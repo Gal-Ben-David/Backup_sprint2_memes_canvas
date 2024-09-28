@@ -67,4 +67,3 @@ function onGetFlexibleMeme() {
     console.log('hi')
     renderMeme()
 }
-
