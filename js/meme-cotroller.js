@@ -136,17 +136,15 @@ function onChangeTextColor() {
 }
 
 function onAddTextLine(isSticker, url) {
-    const lastTextLineIdx = addTextLine()
+    const lastTextLineIdx = addTextLine(isSticker, url)
     switchTextLine(lastTextLineIdx)
 
     if (!isSticker) {
         const meme = getMeme()
         const currLineIdx = meme.selectedLineIdx
         document.querySelector('.text').value = meme.lines[currLineIdx].txt
-
-    } else {
-        updateIsSticker(url)
     }
+
     renderMeme()
 }
 
@@ -173,9 +171,9 @@ function drawFrame() {
     if (meme.lines[currLineIdx].isSticker) {
         y = meme.lines[currLineIdx].txtArea.y - padding
     } else {
-        y = meme.lines[currLineIdx].txtArea.y - meme.lines[currLineIdx].txtArea.height - padding / 2
+        y = meme.lines[currLineIdx].txtArea.y - meme.lines[currLineIdx].txtArea.height - padding / 1.5
     }
-    const radius = 30
+    const radius = 20
 
     const img = new Image()
 
@@ -194,6 +192,8 @@ function drawFrame() {
 }
 
 function drawRoundedRect(gContext, x, y, width, height, radius) {
+    gContext.lineWidth = 1.8
+    gContext.strokeStyle = '#ffffff'
     gContext.fillStyle = '#f5f5f593'
 
     gContext.beginPath()
@@ -209,6 +209,7 @@ function drawRoundedRect(gContext, x, y, width, height, radius) {
     gContext.closePath()
 
     gContext.fill()
+    gContext.stroke()
 }
 
 function onAlignText(dir) {

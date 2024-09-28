@@ -42,10 +42,19 @@ function changeTextColor(color) {
     gMeme.lines[lineIdx].color = color
 }
 
-function addTextLine() {
+function addTextLine(isSticker, url) {
     checkIfTextLineIsEmpty()
-    gMeme.lines.push(createLine())
+    const newLine = createLine()
 
+    console.log(isSticker)
+
+    if (isSticker) {
+        newLine.isSticker = true
+        newLine.size = 100
+        newLine.stickerUrl = url
+    }
+
+    gMeme.lines.push(newLine)
     setLineDiffPos()
 
     return gMeme.lines.length - 1
@@ -67,7 +76,12 @@ function setLineDiffPos() {
     gMeme.lines.forEach((line, i) => {
         const posY = line.txtArea.y
         if (i === 0 && !posY) line.txtArea.y = 73
-        if (i === 1 && !posY) line.txtArea.y = 473
+        if (i === 1 && !posY && !line.isSticker) line.txtArea.y = 473
+        if (i === 1 && !posY && line.isSticker) line.txtArea.y = 273
+        if (i === 2 && !posY && !line.isSticker) {
+            line.txtArea.y = 473
+            return
+        }
         if (i > 1 && !posY) line.txtArea.y = 273
     })
 }
@@ -130,13 +144,6 @@ function deleteLine() {
     const lineIdx = gMeme.selectedLineIdx
     gMeme.lines.splice(lineIdx, 1)
     gMeme.selectedLineIdx = (!gMeme.selectedLineIdx) ? 0 : gMeme.selectedLineIdx - 1
-}
-
-function updateIsSticker(url) {
-    const lineIdx = gMeme.selectedLineIdx
-    gMeme.lines[lineIdx].isSticker = true
-    gMeme.lines[lineIdx].size = 100
-    gMeme.lines[lineIdx].stickerUrl = url
 }
 
 function setSavedMemeToCanvas(idx) {

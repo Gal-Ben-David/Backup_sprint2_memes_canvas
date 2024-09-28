@@ -22,14 +22,12 @@ function onShowGallery() {
     hideEditor()
     hideSavedMemes()
     renderKeywords()
-    toggleMenu()
 }
 
 function onShowEditor() {
     showEditor()
     hideGallery()
     hideSavedMemes()
-    toggleMenu()
 }
 
 function onShowSavedMemes() {
