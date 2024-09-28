@@ -24,7 +24,7 @@ function showGallery() {
     const elGalleryBtn = document.querySelector('.gallery-btn')
 
     elGallery.style.display = 'flex'
-    elGalleryBtn.classList.add('active')
+    elGalleryBtn.classList.add('open')
 }
 
 function hideGallery() {
@@ -32,7 +32,7 @@ function hideGallery() {
     const elGalleryBtn = document.querySelector('.gallery-btn')
 
     elGallery.style.display = 'none'
-    elGalleryBtn.classList.remove('active')
+    elGalleryBtn.classList.remove('open')
 }
 
 function onFilterBy(elCategory) {

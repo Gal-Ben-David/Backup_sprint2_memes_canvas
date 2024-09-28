@@ -1,5 +1,6 @@
 'use strict'
 let gUserImg = null
+let isMouseDown = false
 
 let gLastPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -9,7 +10,7 @@ function hideEditor() {
     const elEditorBtn = document.querySelector('.memes-btn')
 
     elEditor.style.display = 'none'
-    elEditorBtn.classList.remove('active')
+    elEditorBtn.classList.remove('open')
 }
 
 function showEditor() {
@@ -17,7 +18,7 @@ function showEditor() {
     const elEditorBtn = document.querySelector('.memes-btn')
 
     elEditor.style.display = 'flex'
-    elEditorBtn.classList.add('active')
+    elEditorBtn.classList.add('open')
 }
 
 function renderMeme() {
@@ -92,21 +93,17 @@ function setTextInLine(x, y, line, i) {
 
 function handleClick(ev) {
     const meme = getMeme()
-    const clickX = ev.offsetX
-    const clickY = ev.offsetY + 20
+    const pos = getEvPos(ev)
 
     meme.lines.forEach((line, i) => {
 
-        console.log(+line.txtArea.x, line.txtArea.width, line.txtArea.y - 20, line.txtArea.y + line.txtArea.height)
+        //console.log(+line.txtArea.x, line.txtArea.width, line.txtArea.y - 20, line.txtArea.y + line.txtArea.height)
 
         if (
-            clickX >= Math.round(+line.txtArea.x) &&
-            clickX <= Math.round(line.txtArea.x + line.txtArea.width) &&
-            clickY >= line.txtArea.y - 20 &&
-            clickY <= line.txtArea.y + line.txtArea.height
+            isLineClicked(pos, line)
         ) {
             switchTextLine(i)
-            document.querySelector('.text').value = meme.lines[i].txt
+            if (!line.isSticker) document.querySelector('.text').value = meme.lines[i].txt
             drawFrame()
             console.log('clicked')
         }
@@ -163,6 +160,8 @@ function drawFrame() {
     const currLineIdx = meme.selectedLineIdx
     var y
     const padding = 15
+
+    console.log('isDrag', meme.lines[currLineIdx].isDrag)
 
     const rectWidth = meme.lines[currLineIdx].txtArea.width + padding * 2
     const rectHeight = meme.lines[currLineIdx].txtArea.height + padding * 2
@@ -235,7 +234,7 @@ function renderStickerIcons() {
     const elStickers = document.querySelector('.stickers')
     const stickers = getStickers()
 
-    const strHtmls = stickers.map(sticker => `<img src="${sticker.url}" onclick="onAddTextLine('true', '${sticker.url}')"/>`)
+    const strHtmls = stickers.map(sticker => `<img src="${sticker.url}" onclick="onAddTextLine(true, '${sticker.url}')"/>`)
     elStickers.innerHTML = strHtmls.join('')
 }
 
@@ -244,12 +243,39 @@ function onDownloadImg(elLink) {
     elLink.href = imgContent
 }
 
+function isLineClicked(clickedPos, currLine) {
+    const posX = currLine.txtArea.x
+    const posY = currLine.txtArea.y
+
+    if (currLine.isSticker) {
+        const distance = Math.sqrt((posX - clickedPos.x) ** 2 + (posY - clickedPos.y) ** 2)
+        return distance <= currLine.size
+
+    } else if (
+        clickedPos.x >= Math.round(+posX) &&
+        clickedPos.x <= Math.round(posX + currLine.txtArea.width) &&
+        clickedPos.y >= posY - 20 &&
+        clickedPos.y <= posY + currLine.txtArea.height
+    )
+        return true
+}
+
 function onDown(ev) {
     const pos = getEvPos(ev)
+    const meme = getMeme()
 
-    if (!isLineClicked) return
+    meme.lines.forEach((line, i) => {
+        console.log(line)
+        //console.log(+line.txtArea.x, line.txtArea.width, line.txtArea.y - 20, line.txtArea.y + line.txtArea.height)
 
-    setLineDrag(true)
+        if (isLineClicked(pos, line)) {
+            switchTextLine(i)
+            if (!line.isSticker) document.querySelector('.text').value = meme.lines[i].txt
+            drawFrame()
+            setLineDrag(true)
+            console.log('clicked')
+        }
+    })
 
     gLastPos = pos
     document.body.style.cursor = 'grabbing'
@@ -277,7 +303,7 @@ function onUp() {
 }
 
 function addListeners() {
-    gCanvas.addEventListener('click', handleClick)
+    //   gCanvas.addEventListener('click', handleClick)
     addMouseListeners()
     addTouchListeners()
 }

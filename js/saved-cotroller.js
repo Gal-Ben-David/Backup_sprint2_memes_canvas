@@ -7,7 +7,7 @@ function showSavedMemes() {
     const elSavedBtn = document.querySelector('.saved-btn')
 
     elSaved.style.display = 'block'
-    elSavedBtn.classList.add('active')
+    elSavedBtn.classList.add('open')
     renderSavedMemesToSaved()
 }
 
@@ -16,7 +16,7 @@ function hideSavedMemes() {
     const elSavedBtn = document.querySelector('.saved-btn')
 
     elSaved.style.display = 'none'
-    elSavedBtn.classList.remove('active')
+    elSavedBtn.classList.remove('open')
 }
 
 function onSaveMeme(elBtn) {
