@@ -38,7 +38,47 @@ var gDemoMemes = [{
         isDrag: false
     }
     ]
-}]
+},
+{
+    selectedImgId: 7,
+    selectedLineIdx: 0,
+    lines: [{
+        txt: 'When your teacher asks',
+        size: 25,
+        color: 'white',
+        txtArea: { x: 30, y: 380, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    }, {
+        txt: 'for your opinion',
+        size: 25,
+        color: 'white',
+        txtArea: { x: 30, y: 410, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    }, {
+        txt: 'and you weren’t',
+        size: 25,
+        color: 'white',
+        txtArea: { x: 30, y: 440, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    },
+    {
+        txt: 'paying attention',
+        size: 25,
+        color: 'white',
+        txtArea: { x: 30, y: 470, width: '', height: '' },
+        isSticker: false,
+        stickerUrl: '',
+        isDrag: false
+    },
+    ]
+}
+]
 
 function setStickersInArray() {
     gStickers.forEach((_, i) => {
@@ -52,9 +92,10 @@ function setStickersInArray() {
 }
 
 function getFlexibleMeme() {
-    gMeme = { ...gDemoMemes[0] }
-    console.log(gMeme)
-    return gDemoMemes[0]
+    const randIdx = getRandomInt(0, 2)
+    gMeme = { ...gDemoMemes[randIdx] }
+
+    return gMeme
 }
 
 function getStickers() {
