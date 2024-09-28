@@ -2,6 +2,8 @@
 let gUserImg = null
 let isMouseDown = false
 
+
+
 let gLastPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
@@ -39,6 +41,8 @@ function renderMeme() {
     onShowEditor()
 
     img.onload = () => {
+        resizeCanvas(img)
+
         gContext.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 
         meme.lines.forEach((line, i) => createTextLine(line, i))
@@ -265,9 +269,6 @@ function onDown(ev) {
     const meme = getMeme()
 
     meme.lines.forEach((line, i) => {
-        console.log(line)
-        //console.log(+line.txtArea.x, line.txtArea.width, line.txtArea.y - 20, line.txtArea.y + line.txtArea.height)
-
         if (isLineClicked(pos, line)) {
             switchTextLine(i)
             if (!line.isSticker) document.querySelector('.text').value = meme.lines[i].txt
@@ -380,9 +381,16 @@ function loadImageFromInput(ev, onImageReady) {
 }
 
 function renderImg(img) {
-    //gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+    resizeCanvas(img)
+
     gUserImg = img.src
     renderMeme()
+}
+
+function resizeCanvas(img) {
+    gCanvas.height = (img.naturalHeight / img.naturalWidth) * gCanvas.width
+    gCanvasDimensions.height = gCanvas.height
+    gCanvasDimensions.width = gCanvas.width
 }
 
 

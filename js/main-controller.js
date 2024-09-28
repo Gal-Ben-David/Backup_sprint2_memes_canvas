@@ -2,10 +2,14 @@
 
 let gCanvas
 let gContext
+var gCanvasDimensions = { width: '', height: '' }
 
 function onInit() {
     gCanvas = document.querySelector('canvas')
     gContext = gCanvas.getContext('2d')
+
+    gCanvasDimensions.height = gCanvas.height
+    gCanvasDimensions.width = gCanvas.width
 
     setLineDiffPos()
     setStickersInArray()
@@ -15,6 +19,8 @@ function onInit() {
     renderMeme()
 
     addListeners()
+
+    console.log(gImgs)
 }
 
 function onShowGallery() {

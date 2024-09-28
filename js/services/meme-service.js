@@ -52,6 +52,7 @@ function addTextLine(isSticker, url) {
         newLine.isSticker = true
         newLine.size = 100
         newLine.stickerUrl = url
+        newLine.txt = ''
     }
 
     gMeme.lines.push(newLine)
@@ -75,14 +76,10 @@ function createLine() {
 function setLineDiffPos() {
     gMeme.lines.forEach((line, i) => {
         const posY = line.txtArea.y
-        if (i === 0 && !posY) line.txtArea.y = 73
-        if (i === 1 && !posY && !line.isSticker) line.txtArea.y = 473
-        if (i === 1 && !posY && line.isSticker) line.txtArea.y = 273
-        if (i === 2 && !posY && !line.isSticker) {
-            line.txtArea.y = 473
-            return
-        }
-        if (i > 1 && !posY) line.txtArea.y = 273
+        if (i === 0 && !posY) line.txtArea.y = gCanvas.height - (gCanvas.height * 0.85)
+        if (i === 1 && !posY && !line.isSticker) line.txtArea.y = gCanvas.height * 0.85
+        if (i === 1 && !posY && line.isSticker) line.txtArea.y = gCanvas.height / 2
+        if (i > 1 && !posY) line.txtArea.y = gCanvas.height / 2
     })
 }
 
