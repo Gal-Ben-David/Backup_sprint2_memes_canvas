@@ -35,17 +35,26 @@
         transform: translateX(0);
     }
 
-    .filter {
-        width: 300px;
+    .filter,
+    .keywords {
+        width: 100%;
     }
 
     input.list {
         width: 100%;
+        margin-block-end: 0;
+        padding-right: 50px;
     }
 
     .search-img {
-        top: 20px;
-        left: 260px;
+        right: 20px;
+    }
+
+    .filter-elements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
     }
 }
 
@@ -69,11 +78,22 @@
 
     input.list {
         width: 100%;
+        margin-block-end: 40px;
     }
 
     .search-img {
-        top: 20px;
-        left: 500px;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+    .keywords {
+        width: 450px;
+    }
+
+    .filter-elements {
+        display: flex;
+        gap: 13px;
     }
 
 }

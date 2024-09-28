@@ -1,16 +1,12 @@
 'use strict'
 
 var gStickers = [...Array(6)]
-var gSavedMemes = []
 
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [createLine()]
 }
-
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-
 
 function setStickersInArray() {
     gStickers.forEach((_, i) => {

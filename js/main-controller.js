@@ -21,6 +21,7 @@ function onShowGallery() {
     showGallery()
     hideEditor()
     hideSavedMemes()
+    renderKeywords()
     toggleMenu()
 }
 

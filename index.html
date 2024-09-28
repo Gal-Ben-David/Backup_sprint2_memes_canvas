@@ -89,18 +89,21 @@
         </section>
 
         <section class="gallery">
-            <div class="filter">
-                <input class="list" list="browsers" placeholder="Search" oninput="onFilterBy(this.value)">
-                <img class="search-img" src="img/magnify-glass.png">
+            <section class="filter-elements">
+                <div class="filter">
+                    <input class="list" list="browsers" placeholder="Search" oninput="onFilterBy(this.value)">
+                    <img class="search-img" src="img/magnify-glass.png">
 
-                <datalist id="browsers">
-                    <option value="Funny">
-                    <option value="Animal">
-                    <option value="Baby">
-                    <option value="Men">
-                    <option value="Awkward">
-                </datalist>
-            </div>
+                    <datalist id="browsers">
+                        <option value="Funny">
+                        <option value="Animal">
+                        <option value="Baby">
+                        <option value="Men">
+                        <option value="Awkward">
+                    </datalist>
+                </div>
+                <div class="keywords"></div>
+            </section>
 
             <section class="img-container"></section>
         </section>

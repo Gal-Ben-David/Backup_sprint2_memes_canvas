@@ -23,7 +23,7 @@ function showGallery() {
     const elGallery = document.querySelector('.gallery')
     const elGalleryBtn = document.querySelector('.gallery-btn')
 
-    elGallery.style.display = 'block'
+    elGallery.style.display = 'flex'
     elGalleryBtn.classList.add('active')
 }
 
@@ -38,4 +38,25 @@ function hideGallery() {
 function onFilterBy(elCategory) {
     gQueryOptions.filterBy = elCategory.toLowerCase()
     renderGallery()
+}
+
+function onClickedCategory(elCategoryBtn) {
+    updateKeywordSearchCountMap(elCategoryBtn.value)
+    onFilterBy(elCategoryBtn.value)
+
+    renderKeywords()
+}
+
+function renderKeywords() {
+    const keywordSearchCountMap = getKeywords()
+    const elKewwordsContainer = document.querySelector('.keywords')
+
+    const keywords = [...Object.keys(keywordSearchCountMap)]
+    const keywordsSizes = [...Object.values(keywordSearchCountMap)]
+
+    const strHtmls = keywords.map((keyword, i) =>
+        `<button value="${keyword}" onclick="onClickedCategory(this)" 
+    style="font-size:${keywordsSizes[i]}px">${keyword}</button>`)
+
+    elKewwordsContainer.innerHTML = strHtmls.join('')
 }

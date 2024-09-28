@@ -2,9 +2,11 @@
 
 var gImgs = [...Array(18)]
 var gImgCategories = [
-    ['funny', 'Men'], ['animal'], ['baby', 'animal'], ['animal'], ['baby'], ['funny', 'Men'],
-    ['baby', 'funny'], ['funny', 'Men'], ['baby', 'funny'], ['funny'], ['awkward', 'Men'], ['Men'], ['Men'],
-    ['Men'], ['Men', 'funny'], ['Men', 'funny'], ['Men'], ['funny']]
+    ['funny', 'men'], ['animal'], ['baby', 'animal'], ['animal'], ['baby'], ['funny', 'men'],
+    ['baby', 'funny'], ['funny', 'men'], ['baby', 'funny'], ['funny'], ['awkward', 'men'], ['men'], ['men'],
+    ['men'], ['men', 'funny'], ['men', 'funny'], ['men'], ['funny']]
+
+var gKeywordSearchCountMap = { 'funny': 12, 'men': 16, 'baby': 2 }
 
 function setImagesInArray() {
     gImgs.forEach((_, i) => {
@@ -37,4 +39,12 @@ function filterImgBy(category) {
     else images = gImgs.filter(img => img.keywords.some(keyword => keyword.includes(category)))
 
     return images
+}
+
+function updateKeywordSearchCountMap(category) {
+    gKeywordSearchCountMap[category] += 1
+}
+
+function getKeywords() {
+    return gKeywordSearchCountMap
 }
