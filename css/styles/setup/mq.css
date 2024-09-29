@@ -129,6 +129,11 @@
         margin: 15px auto;
     }
 
+    .canvas-container {
+        width: 546px;
+
+    }
+
     .hamburger {
         display: none;
     }

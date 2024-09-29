@@ -67,16 +67,3 @@ function renderSavedMemesToCanvas() {
     onShowEditor()
     renderMeme()
 }
-
-// function onToggleSaveMeme(elBtn) {
-//     gClickedSavedBtn = !gClickedSavedBtn
-//     if (gClickedSavedBtn) {
-//         saveMeme()
-//         elBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>'
-//     }
-
-// }
-
-// function deleteSavedMeme() {
-
-// }
