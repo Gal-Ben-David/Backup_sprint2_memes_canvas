@@ -12,10 +12,18 @@
         z-index: 999;
     }
 
+    .canvas-container {
+        width: 350px;
+        height: max-content;
+    }
+
     .editor {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        width: 530;
+        margin-block-start: 100px !important;
     }
 
     header .buttons {
@@ -97,6 +105,14 @@
         width: 100%;
     }
 
+    .saved-memes {
+        margin-block-start: 100px !important;
+    }
+
+    .editor {
+        align-content: center;
+    }
+
 }
 
 
@@ -156,6 +172,10 @@
 
     .flexible-btn-container {
         margin-block-start: 12px;
+    }
+
+    .editor {
+        justify-content: center;
     }
 
 }

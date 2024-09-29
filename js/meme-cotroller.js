@@ -305,10 +305,10 @@ function addListeners() {
     //gCanvas.addEventListener('click', handleClick)
     addMouseListeners()
     addTouchListeners()
-    // window.addEventListener('resize', () => {
-    //     resizeCanvas()
-    //     renderMeme()
-    // })
+    window.addEventListener('resize', () => {
+        resizeCanvasforMq()
+        renderMeme()
+    })
 
 }
 
