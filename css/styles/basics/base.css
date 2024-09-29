@@ -3,8 +3,8 @@
 }
 
 body {
-    text-align: center;
     margin: 0;
+    text-align: center;
     background-color: var(--crl-primary-1);
 }
 
@@ -12,19 +12,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px auto;
 
     max-width: 1800px;
     height: 76px;
-    align-self: center;
 
     background: linear-gradient(90deg, #109cb1 0%, #3dc981 80%);
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    row-gap: 200px;
 }
 
 canvas {
