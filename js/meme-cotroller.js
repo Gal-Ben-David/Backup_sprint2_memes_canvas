@@ -1,7 +1,6 @@
 'use strict'
 let gUserImgSrc = null
-let isMouseDown = false
-
+var gClickedFromGallery = false
 
 let gLastPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
@@ -38,7 +37,10 @@ function renderMeme() {
         img.src = getImgUrlById(imgIdx)
     } else img.src = gUserImgSrc
 
-    onShowEditor()
+    if (gClickedFromGallery) {
+        onShowEditor()
+        gClickedFromGallery = false
+    }
 
     img.onload = () => {
         resizeCanvas(img)
@@ -112,12 +114,6 @@ function handleClick(ev) {
 
 function onGetText(elText) {
     setLineTxt(elText)
-    renderMeme()
-}
-
-function onImgSelect(imgIdx = 1) {
-    getImgUrlById(imgIdx)
-    gUserImgSrc = null
     renderMeme()
 }
 
@@ -364,6 +360,7 @@ function onUploadImg(ev) {
 
 function onImgInput(ev) {
     changeSelectedImgIdx()
+    gClickedFromGallery = true
     loadImageFromInput(ev, renderImg)
 }
 

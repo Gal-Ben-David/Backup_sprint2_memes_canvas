@@ -64,6 +64,6 @@ function toggleMenu() {
 
 function onGetFlexibleMeme() {
     gIsFlexibleMode = true
-    console.log('hi')
+    gClickedFromGallery = true
     renderMeme()
 }

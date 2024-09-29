@@ -19,6 +19,13 @@ function renderGallery() {
     elGallery.innerHTML = strHtmls.join('')
 }
 
+function onImgSelect(imgIdx = 1) {
+    getImgUrlById(imgIdx)
+    gUserImgSrc = null
+    gClickedFromGallery = true
+    renderMeme()
+}
+
 function showGallery() {
     const elGallery = document.querySelector('.gallery')
     const elGalleryBtn = document.querySelector('.gallery-btn')

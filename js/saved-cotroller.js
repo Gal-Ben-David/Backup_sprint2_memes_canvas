@@ -26,7 +26,6 @@ function onSaveMeme(elBtn) {
 }
 
 function saveMeme() {
-    console.log('hi')
     const elCanvas = document.querySelector('canvas')
     const imgDataUrl = elCanvas.toDataURL('image/jpeg')
 
@@ -38,6 +37,8 @@ function saveMeme() {
     let savedMemes = loadFromStorage('memes') || []
 
     savedMemes.push(meme)
+
+    console.log(savedMemes)
 
     saveToStorage('memes', savedMemes)
 }
@@ -66,3 +67,16 @@ function renderSavedMemesToCanvas() {
     onShowEditor()
     renderMeme()
 }
+
+// function onToggleSaveMeme(elBtn) {
+//     gClickedSavedBtn = !gClickedSavedBtn
+//     if (gClickedSavedBtn) {
+//         saveMeme()
+//         elBtn.innerHTML = '<i class="fa-solid fa-bookmark"></i>'
+//     }
+
+// }
+
+// function deleteSavedMeme() {
+
+// }
