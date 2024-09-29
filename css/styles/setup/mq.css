@@ -21,9 +21,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        width: 530;
-        margin-block-start: 100px !important;
+        gap: 50px;
+        width: 600px;
+        margin: auto;
+        margin-block-start: 120px !important;
     }
 
     header .buttons {
@@ -111,10 +112,6 @@
         margin-block-start: 100px !important;
     }
 
-    .editor {
-        align-content: center;
-    }
-
 }
 
 
@@ -181,7 +178,9 @@
     }
 
     .editor {
+        gap: 75px;
         justify-content: center;
+        align-items: start;
     }
 
 }
