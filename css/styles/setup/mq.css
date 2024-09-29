@@ -40,6 +40,8 @@
         background-color: var(--clr-tools-bg);
         box-shadow: -8px 0px 13px rgb(0 0 0 / 20%);
         transform: translateX(100%);
+
+        transition: 0.5s ease;
     }
 
     .hamburger {
