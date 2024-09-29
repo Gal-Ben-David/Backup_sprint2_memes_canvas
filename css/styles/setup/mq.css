@@ -29,7 +29,7 @@
     header .buttons {
         position: fixed;
         top: 76px;
-        right: -100px;
+        right: -40px;
 
         flex-direction: column;
         gap: 10px;
@@ -131,7 +131,6 @@
 
     .canvas-container {
         width: 546px;
-
     }
 
     .hamburger {
