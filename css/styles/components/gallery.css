@@ -29,6 +29,8 @@
 
 .img-container img {
     width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
     border-radius: 20px;
 
     box-shadow: 0 1px 10px rgba(223, 223, 223, 0.4);

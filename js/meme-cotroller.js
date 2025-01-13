@@ -238,9 +238,6 @@ function onDownloadImg(elLink) {
 }
 
 function isLineClicked(clickedPos, currLine) {
-    // const scaleX = gCanvas.width / 546
-    // const scaleY = gCanvas.height / 546
-    // console.log(gCanvas.width, gCanvas.height)
 
     const posX = currLine.txtArea.x
     const posY = currLine.txtArea.y
@@ -298,7 +295,6 @@ function onUp() {
 }
 
 function addListeners() {
-    //gCanvas.addEventListener('click', handleClick)
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', () => {
